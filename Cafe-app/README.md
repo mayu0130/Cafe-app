@@ -183,3 +183,6 @@ Figma：https://www.figma.com/design/dRO2uIRhD5xNwm1DF9Pe3F/%E5%8D%92%E6%A5%AD%E
 ### 各画面の作り込み
 画面遷移だけでなく、必要なボタンやフォームが確認できるくらい作り米ているか？
 - [◯] 作り込みはある程度完了している（Figmaを見て画面の作成ができる状態にある）
+
+### ER図
+https://dbdiagram.io/d/66fe1b8efb079c7ebd2af076
