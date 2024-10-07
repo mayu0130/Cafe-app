@@ -36,6 +36,12 @@
   <body>
     <%= yield %>
   </body>
-  <i class="fa-brands fa-x-twitter"></i>
-  <i class="fa-brands fa-instagram">
+  <footer>
+    <%= link_to image_tag('logo.png'), root_path %>
+    <%= link_to 'お問い合わせ', '#' %>
+    <%= link_to '利用規約', '#' %>
+    <%= link_to 'プライバシーポリシー', '#' %>
+    <%= link_to '<i class="fa-brands fa-x-twitter"></i>'.html_safe, '#', target: '_blank', rel: 'noopener noreferrer' %>
+    <%= link_to '<i class="fa-brands fa-instagram"></i>'.html_safe, '#', target: '_blank', rel: 'noopener noreferrer' %>
+  </footer>
 </html>
