@@ -15,6 +15,7 @@
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
   </head>
 
   <div class="bg-teal">
@@ -35,4 +36,23 @@
   <body>
     <%= yield %>
   </body>
+    <footer class="bg-teal p-4">
+      <div class="container mx-auto flex justify-between items-start">
+
+        <div class="flex flex-col space-y-4">
+          <%= link_to image_tag('logo.png', class: 'h-8'), root_path %>
+
+          <div class="flex space-x-4">
+            <%= link_to 'お問い合わせ', '#', class: 'text-brown text-14 font-bold' %>
+            <%= link_to '利用規約', '#', class: 'text-brown text-14 font-bold' %>
+            <%= link_to 'プライバシーポリシー', '#', class: 'text-brown text-14 font-bold' %>
+          </div>
+        </div>
+
+        <div class="flex space-x-4 items-start">
+          <%= link_to '<i class="fa-brands fa-x-twitter"></i>'.html_safe, '#', target: '_blank', rel: 'noopener noreferrer', class: 'text-brown text-2xl font-bold' %>
+          <%= link_to '<i class="fa-brands fa-instagram"></i>'.html_safe, '#', target: '_blank', rel: 'noopener noreferrer', class: 'text-brown text-2xl font-bold' %>
+        </div>
+      </div>
+    </footer>
 </html>
