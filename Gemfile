@@ -44,6 +44,7 @@ group :development, :test do
   gem "brakeman", require: false
 
   gem 'rubocop-rails'
+  gem 'rubocop-capybara'
 end
 
 group :development do
