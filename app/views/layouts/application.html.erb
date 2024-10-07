@@ -16,18 +16,22 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-    <header class="flex justify-between items-center p-4 mx-8">
-  <div>
-    <%= link_to image_tag('logo.png', class: 'h-12'), root_path %>
-  </div>
-  <div class="flex space-x-4">
-    <%= image_tag 'default-image.png', class: 'h-10 rounded-full' %>
-    <%= link_to image_tag('profile.png', class: 'h-10'), '#' %>
-    <%= link_to image_tag('bookmark.png', class: 'h-10'), '#' %>
-    <%= link_to image_tag('diagnose.png', class: 'h-10'), '#' %>
-    <%= link_to image_tag('logout.png', class: 'h-10'), '#' %>
-  </div>
-</header>
+
+  <div class="bg-teal">
+  <header class="flex justify-between items-center p-4 mx-8">
+    <div>
+      <%= link_to image_tag('logo.png', class: 'h-12'), root_path %>
+    </div>
+    <div class="flex space-x-4">
+      <%= image_tag 'default-image.png', class: 'h-10 rounded-full' %>
+      <%= link_to image_tag('profile.png', class: 'h-10'), '#' %>
+      <%= link_to image_tag('bookmark.png', class: 'h-10'), '#' %>
+      <%= link_to image_tag('diagnose.png', class: 'h-10'), '#' %>
+      <%= link_to image_tag('logout.png', class: 'h-10'), '#' %>
+    </div>
+  </header>
+</div>
+
   <body>
     <%= yield %>
   </body>
