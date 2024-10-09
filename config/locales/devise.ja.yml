@@ -125,10 +125,10 @@ ja:
         back: 戻る
         didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか?
         didn_t_receive_unlock_instructions: アカウントの凍結解除方法のメールを受け取っていませんか?
-        forgot_your_password: パスワードを忘れましたか?
+        forgot_your_password: "パスワードをお忘れの方はこちら"
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
-        sign_up: アカウント登録
+        sign_up: 新規登録
       minimum_password_length: "（%{count}文字以上）"
     unlocks:
       new:
