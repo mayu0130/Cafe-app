@@ -1,0 +1,22 @@
+<div class="bg-cream">
+<div class="container mx-auto">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8 pb-8">
+    <% @posts.each do |post| %>
+      <div class="rounded-lg overflow-hidden bg-white">
+        <%= image_tag 'eyecatch.png', class: 'h-48 w-full object-cover' %>
+        <div class="p-4">
+          <h2 class="mb-2">
+            <%= link_to post.cafe_name, post_path(post), class: 'text-brown hover:opacity-70 text-16 font-bold' %>
+          </h2>
+          <div class="mt-2">
+            <p class="font-semibold text-14 text-gray-700">mayuko0000</p>
+            <p class="text-gray-500 text-14">
+              <%= post.created_at %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
