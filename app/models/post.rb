@@ -3,6 +3,6 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: { minimum: 10, maximum: 2000 }
   validates :address, presence: true, length: { minimum: 2, maximum: 50 }
   validates :cafe_link, format: { with: URI::regexp(%w[http https]), allow_blank: true }
-  
+
   belongs_to :user
 end
