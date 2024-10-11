@@ -30,6 +30,16 @@ module.exports = {
         34: '2.125rem',     // 34px
         36: '2.25rem',      // 36px
       },
+      animation: {
+        fade: 'fadeOut 3s forwards', // フェードアウトのアニメーションを3秒で実行
+      },
+      keyframes: {
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '80%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+      }, // ここを追加
     },
   },
   plugins: [],
