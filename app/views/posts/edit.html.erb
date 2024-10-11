@@ -1,0 +1,29 @@
+<body class="bg-cream">
+  <div class="container mx-auto mt-8 mb-12 px-32 py-6">
+    <%= form_with(model: @post, url: post_path(@post), method: 'put', local: true) do |f| %>
+        <div class="mb-4">
+          <%= f.label :cafe_name, 'カフェ名', class: 'block text-brown font-semibold mb-2' %>
+          <%= f.text_field :cafe_name, class: 'border border-gray-200 rounded-lg w-full p-2' %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :body, '内容', class: 'block text-brown font-semibold mb-2' %>
+          <%= f.text_area :body, class: 'border border-gray-200 rounded-lg w-full p-2 h-32' %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :address, '住所', class: 'block text-brown font-semibold mb-2' %>
+          <%= f.text_field :address, class: 'border border-gray-200 rounded-lg w-full p-2' %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :cafe_link, 'URL', class: 'block text-brown font-semibold mb-2' %>
+          <%= f.text_field :cafe_link, class: 'border border-gray-200 rounded-lg w-full p-2' %>
+        </div>
+
+        <div class="flex justify-center">
+          <%= f.submit '更新する', class: 'bg-teal text-white font-bold mt-8 py-2 px-12 rounded-lg hover:bg-opacity-70 max-w-xs' %>
+        </div>
+    <% end %>
+  </div>
+</body>
