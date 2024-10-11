@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        cafe_name: カフェ名
+        body: 本文
+        address: 住所
+        cafe_link: URL
