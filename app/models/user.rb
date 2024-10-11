@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def display_name
     self.email.split('@').first
   end
+
+  def mine?(post)
+    self.id == post.user_id
+  end
 end
