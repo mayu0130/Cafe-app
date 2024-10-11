@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <p class="text-gray-500 text-14 mb-2"><%= @post.created_at %></p>
+    <p class="text-gray-500 text-14 mb-2"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
 
     <p class="text-gray-700 mb-8"><%= @post.body %></p>
 
