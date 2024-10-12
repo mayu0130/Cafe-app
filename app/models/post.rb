@@ -5,4 +5,5 @@ class Post < ApplicationRecord
   validates :cafe_link, format: { with: URI::regexp(%w[http https]), allow_blank: true }
 
   belongs_to :user
+  has_one_attached :image
 end
