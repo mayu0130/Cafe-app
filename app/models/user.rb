@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def display_name
     self.email.split('@').first
