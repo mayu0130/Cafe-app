@@ -27,7 +27,7 @@
     <div class="flex space-x-4">
       <% if user_signed_in? %>
         <%= image_tag 'default-image.png', class: 'h-10 rounded-full' %>
-        <%= link_to image_tag('profile.png', class: 'h-10'), '#' %>
+        <%= link_to image_tag('profile.png', class: 'h-10'), profile_path %>
         <%= link_to image_tag('bookmark.png', class: 'h-10'), '#' %>
         <%= link_to image_tag('diagnose.png', class: 'h-10'), '#' %>
         <%= link_to image_tag('logout.png', class: 'h-10'), destroy_user_session_path,data: { turbo_method: :delete } %>
