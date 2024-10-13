@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
   end
   resource :profile, only: [:show, :edit, :update]
+  resources :accounts, only: [:show]
   # Defines the root path route ("/")
   # root "posts#index"
 end
