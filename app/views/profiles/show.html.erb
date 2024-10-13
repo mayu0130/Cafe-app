@@ -1,1 +1,47 @@
-<%= render 'commons/profile', user: current_user %>
+<body class="bg-cream">
+  <div class="container mt-6 mx-auto p-4 flex justify-center">
+    <div class="flex flex-col items-center bg-white rounded-lg p-10">
+      <div class="flex items-center space-x-4 mb-4">
+        <% if @profile && @profile.avatar.attached? %>
+          <%= image_tag @profile.avatar, class: 'w-12 h-12 mr-2 border rounded-full' %>
+        <% else %>
+          <%= image_tag 'profile.png', class: 'w-12 h-12 mr-2 border rounded-full' %> <!-- デフォルトのアバター画像を表示 -->
+        <% end %>
+        <div>
+          <h2 class="text-xl text-brown font-semibold">
+            <%= @profile&.nickname.presence || current_user.display_name %>
+          </h2>
+          <p class="text-gray-600 text-14">
+            <%= @profile&.mbti || 'MBTI:未記入' %> |
+            <%= @profile&.address || '居住地：未記入' %>
+          </p>
+        </div>
+        <%= link_to image_tag('edit.png', alt: '編集', class: 'w-6 h-6 ml-10 mb-3 cursor-pointer'), edit_profile_path %>
+      </div>
+
+      <p class="mb-2 text-gray-800 text-center text-14">
+        <%= @profile&.introduction || '自己紹介：未記入' %>
+      </p>
+
+      <div class="flex justify-center space-x-4 mt-6">
+        <% if @profile&.x_link.present? %>
+          <%= link_to @profile.x_link, class: 'text-blue-500 hover:text-blue-700', target: "_blank", rel: "noopener" do %>
+          <i class="fa-brands fa-x-twitter text-2xl text-brown"></i>
+          <% end %>
+        <% end %>
+
+        <% if @profile&.instagram_link.present? %>
+          <%= link_to @profile.instagram_link, class: 'text-pink-500 hover:text-pink-700', target: "_blank", rel: "noopener" do %>
+          <i class="fa-brands fa-instagram text-2xl text-brown"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8 pb-8">
+    <% current_user.posts.each do |post| %>
+      <%= render 'commons/post', post: post %>
+    <% end %>
+  </div>
+</body>
