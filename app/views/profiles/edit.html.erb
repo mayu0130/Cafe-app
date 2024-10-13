@@ -8,6 +8,11 @@
       </div>
 
       <div class="mb-4">
+        <%= f.label :avatar, 'プロフィール画像', class: 'block text-brown font-semibold mb-2' %>
+        <%= f.file_field :avatar, accept: "avatar/*", class: 'border border-gray-200 rounded-lg w-full p-2 bg-white' %>
+      </div>
+
+      <div class="mb-4">
         <%= f.label :birthday, '生年月日', class: 'block text-brown font-semibold mb-2' %>
         <%= f.date_field :birthday, class: 'border border-gray-200 rounded-lg w-full p-2'%>
       </div>

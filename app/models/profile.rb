@@ -8,4 +8,5 @@ class Profile < ApplicationRecord
    validates :instagram_link, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: 'は有効なURLである必要があります' }, allow_blank: true
 
   belongs_to :user
+  has_one_attached :avatar
 end
