@@ -15,4 +15,8 @@ class User < ApplicationRecord
   def mine?(post)
     self.id == post.user_id
   end
+
+  def prepare_profile
+    profile || build_profile
+  end
 end
