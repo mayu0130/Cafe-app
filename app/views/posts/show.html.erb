@@ -7,7 +7,7 @@
           <%= link_to image_tag('edit.png', class: 'w-6 h-6 mr-2 cursor-pointer'), edit_post_path(@post) %>
           <%= link_to image_tag('destroy.png', class: 'w-6 h-6 cursor-pointer'), post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
         <% else %>
-          <%= image_tag 'bookmark.png', class: 'w-6 h-6 cursor-pointer' %>
+          <%= render 'bookmark_buttons', { post: @post } %>
         <% end %>
       </div>
     </div>

@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   root to: 'posts#index'
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
+      collection do
+        get :bookmarks
+      end
+
   end
   resource :profile, only: [:show, :edit, :update]
   resources :accounts, only: [:show]
+  resources :bookmarks, only: %i[create destroy]
   # Defines the root path route ("/")
   # root "posts#index"
 end
