@@ -44,6 +44,11 @@ class PostsController < ApplicationController
     redirect_to posts_path , notice: '記事の投稿を削除しました'
   end
 
+  def bookmarks
+    @bookmark_posts = current_user.bookmarks.includes(:post).map(&:post)
+  end
+
+
   private
   def post_params
     params.require(:post).permit(:cafe_name, :body, :address, :cafe_link, :image)
