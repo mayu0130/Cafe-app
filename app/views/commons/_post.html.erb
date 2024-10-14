@@ -1,5 +1,10 @@
 <div class="rounded-lg overflow-hidden bg-white">
-  <%= image_tag 'eyecatch.png', class: 'h-48 w-full object-cover' %>
+  <% if post.image.present? %>
+    <%= image_tag post.image, class: 'h-48 w-full object-cover' %>
+  <% else %>
+    <%= image_tag 'eyecatch.png', class: 'h-48 w-full object-cover' %>
+  <% end %>
+
   <div class="p-4">
     <h2>
       <%= link_to post.cafe_name, post_path(post), class: 'text-brown hover:opacity-70 text-16 font-bold' %>
@@ -17,7 +22,7 @@
           <% end %>
         <% end %>
         <p class="text-14 text-gray-700 font-bold"><%= post.user.profile&.nickname || post.user.display_name %></p>
-      <% end %> 
+      <% end %>
     </div>
     <p class="text-gray-500 text-14">
       <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
