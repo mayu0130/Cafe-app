@@ -3,6 +3,8 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = current_user.profile
+    @user = current_user
+    @posts = @user.posts.order(created_at: :desc)
   end
 
   def edit

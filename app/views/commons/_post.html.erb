@@ -1,14 +1,26 @@
 <div class="rounded-lg overflow-hidden bg-white">
   <%= image_tag 'eyecatch.png', class: 'h-48 w-full object-cover' %>
   <div class="p-4">
-    <h2 class="mb-2">
+    <h2>
       <%= link_to post.cafe_name, post_path(post), class: 'text-brown hover:opacity-70 text-16 font-bold' %>
     </h2>
-    <div class="mt-2">
-      <p class="font-semibold text-14 text-gray-700">mayuko0000</p>
-      <p class="text-gray-500 text-14">
-        <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
-      </p>
+    <div class="mt-2 flex items-center">
+      <% if post.user.present? %>
+        <% if post.user.avatar_image.present? %>
+          <%= link_to account_path(post.user) do %>
+            <%= image_tag post.user.avatar_image, class: 'w-6 h-6 rounded-full mr-2' %>
+          <% end %>
+        <% else %>
+          <%= link_to account_path(post.user), class: 'flex items-center', onclick: "alert('プロフィールが設定されていません'); return false;" do %>
+            <%= image_tag 'eyecatch.png', class: 'w-6 h-6 rounded-full mr-3' %>
+            <span><%= post.user.display_name %></span>
+          <% end %>
+        <% end %>
+        <p class="text-14 text-gray-700 font-bold"><%= post.user.profile&.nickname || post.user.display_name %></p>
+      <% end %> 
     </div>
+    <p class="text-gray-500 text-14">
+      <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+    </p>
   </div>
 </div>
