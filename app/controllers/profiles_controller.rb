@@ -12,7 +12,14 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = current_user.build_profile(profile_params)
+    @profile = current_user.profile || current_user.build_profile
+    @profile.assign_attributes(profile_params)
+
+    # 画像が新しくアップロードされている場合のみ、avatar_imageを添付
+    if params[:profile][:avatar].present?
+      @profile.avatar.attach(params[:profile][:avatar])
+    end
+
     if @profile.save
       redirect_to profile_path, notice: 'プロフィールを更新しました'
     else
@@ -20,6 +27,8 @@ class ProfilesController < ApplicationController
       render :edit
     end
   end
+
+
 
   private
 
