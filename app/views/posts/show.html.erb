@@ -47,7 +47,7 @@
       </div>
     <% end %>
 
-     <div class="text-brown">
+    <div class="text-brown">
     <% prepare_meta_tags @post %>
     <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(post_url(@post))}" %>
     <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
