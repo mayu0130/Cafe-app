@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resource :profile, only: [:show, :edit, :update]
   resources :accounts, only: [:show]
   resources :bookmarks, only: %i[create destroy]
+
+  get 'images/ogp.png', to: 'images#ogp', as: 'images_ogp'
   # Defines the root path route ("/")
   # root "posts#index"
 end
