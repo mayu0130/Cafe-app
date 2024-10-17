@@ -49,7 +49,8 @@
 
     <div class="text-brown">
     <% prepare_meta_tags @post %>
-    <% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(post_url(@post))}" %>
+   <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape("Mycafeを投稿したよ！-#{@post.cafe_name}")}" %>
+
     <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
     <div class="flex items-center mb-8">
     <i class="fa-brands fa-x-twitter fa-xl mr-2"></i>
