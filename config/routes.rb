@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'images/ogp.png', to: 'images#ogp', as: 'images_ogp'
 
   get 'terms_of_service', to: 'static_pages#terms_of_service'
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
   # Defines the root path route ("/")
   # root "posts#index"
 end
