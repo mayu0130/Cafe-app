@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[create destroy]
 
   get 'images/ogp.png', to: 'images#ogp', as: 'images_ogp'
+
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
   # Defines the root path route ("/")
   # root "posts#index"
 end
