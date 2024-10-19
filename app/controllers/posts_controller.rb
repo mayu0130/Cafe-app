@@ -57,23 +57,20 @@ class PostsController < ApplicationController
   end
 
   def prepare_meta_tags(post)
-    # OgpCreatorで動的画像を生成し、そのパスを取得
-    image_path = OgpCreator.build(post.cafe_name, post.id)
-    image_url = "#{request.base_url}/#{image_path}"
-
-    set_meta_tags og: {
-                    site_name: 'Magco',  # 固定されたアプリ名
-                    title: post.cafe_name, # 投稿したカフェ名
-                    description: 'ユーザーによるカフェの投稿です',
-                    type: 'website',
-                    url: request.original_url,
-                    image: image_url,  # 生成された画像を使用
-                    locale: 'ja-JP'
-                  },
-                  twitter: {
-                    card: 'summary_large_image',
-                    site: 'https://x.com/m_0130k',
-                    image: image_url  # 生成された画像を使用
-                  }
-  end
+        image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(post.cafe_name)}"
+        set_meta_tags og: {
+                        site_name: 'Magco',
+                        title: post.cafe_name,
+                        description: 'ユーザーによるカフェの投稿です',
+                        type: 'website',
+                        url: request.original_url,
+                        image: image_url,
+                        locale: 'ja-JP'
+                      },
+                      twitter: {
+                        card: 'summary_large_image',
+                        site: 'https://x.com/m_0130k',
+                        image: image_url
+                      }
+      end
 end
