@@ -9,7 +9,7 @@ class OgpCreator
   ROW_LIMIT = 10
 
 
-  def self.build(text)
+  def self.build(text, post_id)
     text = prepare_text(text)
     image = MiniMagick::Image.open(BASE_IMAGE_PATH)
     image.combine_options do |config|
