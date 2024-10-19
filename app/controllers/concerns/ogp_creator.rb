@@ -9,7 +9,7 @@ class OgpCreator
   ROW_LIMIT = 10
 
 
-  def self.build(text, post_id)
+  def self.build(text)
     text = prepare_text(text)
     image = MiniMagick::Image.open(BASE_IMAGE_PATH)
     image.combine_options do |config|
@@ -19,12 +19,7 @@ class OgpCreator
       config.pointsize FONT_SIZE
       config.draw "text #{TEXT_POSITION} '#{text}'"
     end
-
-    # ファイル名を投稿IDに基づいて保存
-  output_path = "./public/images/ogp_#{post_id}.png"
-  image.write(output_path)
-  output_path  # 生成された画像のパスを返す
-end
+  end
 
   private
   def self.prepare_text(text)
