@@ -8,7 +8,7 @@
     <%= form_with(model: @post, url: post_path(@post), method: 'put', local: true) do |f| %>
         <div class="mb-4">
           <%= f.label :cafe_name, 'カフェ名', class: 'block text-brown font-semibold mb-2' %>
-          <%= f.text_field :cafe_name, class: 'border border-gray-200 rounded-lg w-full p-2' %>
+          <%= f.text_field :cafe_name, value: @post.cafe_name, readonly: true, class: 'border border-gray-200 rounded-lg w-full p-2' %>
         </div>
 
         <div class="mb-4">
