@@ -35,7 +35,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path(@post), notice: '投稿を更新しました'
-      OgpCreator.build(@post.cafe_name, @post.id)
     else
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
