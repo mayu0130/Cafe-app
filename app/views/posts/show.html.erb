@@ -41,16 +41,17 @@
     <% end %>
     <div class="text-brown">
     <% prepare_meta_tags @post %>
-    <% post_url = post_url(@post) %>
-    <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape("Mycafeを投稿したよ！-#{@post.cafe_name}")}&url=#{post_url}" %>
 
+  <% timestamp = Time.now.to_i %> <!-- 現在のタイムスタンプを取得 -->
+  <% post_url = "#{post_url(@post)}?timestamp=#{timestamp}" %> <!-- タイムスタンプを追加 -->
+  <% twitter_share_url = "https://twitter.com/share?url=#{CGI.escape("Mycafeを投稿したよ！-#{@post.cafe_name}")}&url=#{post_url}" %>
 
-    <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
+  <%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
     <div class="flex items-center mb-8">
-    <i class="fa-brands fa-x-twitter fa-xl mr-2"></i>
-    <div class="text-gray-700 font-bold">Xに共有する</div>
+      <i class="fa-brands fa-x-twitter fa-xl mr-2"></i>
+      <div class="text-gray-700 font-bold">Xに共有する</div>
     </div>
-    <% end %>
+  <% end %>
 </div>
     <div class="bg-cream p-2 rounded-xl">
       <h2 class="text-brown text-20 font-bold p-2">コメント一覧</h2>
