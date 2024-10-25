@@ -62,5 +62,5 @@ gem 'devise'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
 
-gem "meta-tags", require: "meta_tags"
-gem "mini_magick"
+gem 'meta-tags', require: 'meta_tags'
+gem 'mini_magick'

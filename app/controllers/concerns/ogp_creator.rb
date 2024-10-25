@@ -8,7 +8,6 @@ class OgpCreator
   INDENTION_COUNT = 16
   ROW_LIMIT = 10
 
-
   def self.build(text)
     text = prepare_text(text)
     image = MiniMagick::Image.open(BASE_IMAGE_PATH)
