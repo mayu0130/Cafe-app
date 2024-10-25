@@ -1,4 +1,4 @@
-<body class="bg-cream">
+<body class="bg-cream h-screen">
   <div class="container mx-auto mt-8 mb-12 px-32 py-6">
   <ul>
     <% @post.errors.full_messages.each do |message| %>
@@ -17,7 +17,7 @@
       </div>
 
       <div class="mb-4">
-        <%= f.label :image, 'アップロード画像', class: 'block text-brown font-semibold mb-2' %>
+        <%= f.label :image, 'アップロード画像', class: 'block text-brown bg-cream font-semibold mb-2' %>
         <%= f.file_field :image, accept: "image/*", class: 'border border-gray-200 rounded-lg w-full p-2 bg-white' %>
       </div>
 
