@@ -2,9 +2,21 @@ ja:
   activerecord:
     models:
       post: 投稿
+      comment: コメント
+      profile: プロフィール
     attributes:
       post:
         cafe_name: カフェ名
         body: 本文
         address: 住所
         cafe_link: URL
+      comment:
+        content: 本文
+      profile:
+        nickname: ニックネーム
+        birthday: 誕生日
+        mbti: MBTI
+        address: 住所
+        introduction: 自己紹介文
+        x_link: X Link
+        instagram_link: Instagram Link

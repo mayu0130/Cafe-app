@@ -13,9 +13,8 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(post), notice: 'コメントを追加'
     else
-      puts @comment.errors.full_messages  # エラーメッセージを出力
       flash.now[:error] = 'コメントを追加できませんでした'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
