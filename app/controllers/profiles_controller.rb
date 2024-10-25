@@ -28,8 +28,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-
-
   private
 
   def profile_params
