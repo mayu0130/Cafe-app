@@ -1,5 +1,9 @@
-<div class="bg-cream">
-  <div class="container mx-auto">
+<div class="bg-cream h-screen">
+  <div class="container mx-auto pt-10">
+    <%= link_to new_post_path, class: 'flex items-center' do %>
+      <i class="fa fa-plus text-brown text-2xl"></i>
+      <span class="text-brown text-xl font-bold ml-2">投稿する</span>
+    <% end %>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8 pb-8">
       <% @posts.each do |post| %>
       <%= render 'commons/post', post: post %>
