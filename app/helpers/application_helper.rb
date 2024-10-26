@@ -7,4 +7,9 @@ module ApplicationHelper
     else 'bg-yellow-100'
     end
   end
+
+  def page_title(title = '')
+    base_title = 'Magco'
+    title.present? ? "#{base_title} | #{title}" : base_title
+  end
 end

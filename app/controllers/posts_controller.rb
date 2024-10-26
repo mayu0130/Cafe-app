@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments
     prepare_meta_tags(@post)
+    @cafe_name = @post.cafe_name
   end
 
   def new

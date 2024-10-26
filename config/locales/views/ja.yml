@@ -1,0 +1,25 @@
+ja:
+  posts:
+    index:
+      title: "投稿一覧"
+    show:
+      title: "投稿詳細"
+    new:
+      title: "投稿作成"
+    edit:
+      title: "投稿編集"
+    bookmarks:
+      title: "ブックマーク一覧"
+  comments:
+    new:
+      title: "コメント作成"
+  profiles:
+    show:
+      title: "プロフィール"
+    edit:
+      title: "プロフィール編集"
+  static_pages:
+    privacy_policy:
+      title: "プライバシーポリシー"
+    terms_of_service:
+      title: "利用規約"
