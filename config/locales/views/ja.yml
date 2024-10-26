@@ -13,6 +13,8 @@ ja:
   comments:
     new:
       title: "コメント作成"
+    edit:
+      title: "コメント編集"
   profiles:
     show:
       title: "プロフィール"
