@@ -55,7 +55,7 @@
     </script>
 
     <script async
-      src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_map_api_key %>&callback=initMap">
     </script>
 
     <div class="flex items-center mb-8">
