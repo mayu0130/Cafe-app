@@ -108,6 +108,10 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-i18n-views (0.3.7)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
+      railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
     globalid (1.2.1)
@@ -306,6 +310,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n-views
+  dotenv-rails
   jbuilder
   jsbundling-rails
   meta-tags
