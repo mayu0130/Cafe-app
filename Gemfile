@@ -66,3 +66,5 @@ gem 'meta-tags', require: 'meta_tags'
 gem 'mini_magick'
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'geocoder'
