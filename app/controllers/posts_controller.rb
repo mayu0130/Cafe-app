@@ -55,7 +55,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:cafe_name, :body, :address, :cafe_link, :image)
+    params.require(:post).permit(:cafe_name, :body, :address, :cafe_link, :image, :latitude, :longitude)
   end
 
   def prepare_meta_tags(post)

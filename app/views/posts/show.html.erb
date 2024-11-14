@@ -30,32 +30,43 @@
       <p class="text-gray-700"><%= @post.address %></p>
     </div>
 
-    <div class="mb-6" id="map" style="height: 400px;"></div>
 
-    <script>
-      function initMap() {
-        const address = '<%= @post.address %>';
-        const geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({ address: address }, (results, status) => {
-          if (status === 'OK') {
-            const map = new google.maps.Map(document.getElementById('map'), {
+<script type="text/javascript">
+  function initMap() {
+    var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+    var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 15,
-              center: results[0].geometry.location,
-            });
-            new google.maps.Marker({
-              position: results[0].geometry.location,
-              map: map,
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-    </script>
+              center: test
+              });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.map_api_key %>&callback=initMap">
-    </script>
+    var contentString = '住所：<%= @post.address %>';
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+                  position:test,
+                  map: map,
+                  title: contentString
+                 });
+
+     marker.addListener('click', function() {
+       infowindow.open(map, marker);
+     });
+  }
+</script>
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+<style type="text/css">
+  #map { height: 300px;
+         width: 70%;}
+</style>
+<div id="map"></div>
+
 
     <div class="flex items-center mb-8">
       <%= image_tag 'link.png', class: 'w-6 h-6 mr-2' %>
