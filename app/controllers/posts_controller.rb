@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @tags = Tag.all
   end
 
   def create
@@ -24,6 +25,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: '投稿しました'
     else
+      @tags = Tag.all
       flash.now[:error] = '投稿に失敗しました'
       render :new, status: :unprocessable_entity
     end
@@ -31,6 +33,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tags = Tag.all
   end
 
   def update
@@ -38,6 +41,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: '投稿を更新しました'
     else
+      @tags = Tag.all
       flash.now[:error] = '更新に失敗しました'
       render :edit, status: :unprocessable_entity
     end
@@ -53,9 +57,11 @@ class PostsController < ApplicationController
     @bookmark_posts = current_user.bookmarks.includes(:post).map(&:post)
   end
 
+
+
   private
   def post_params
-    params.require(:post).permit(:cafe_name, :body, :address, :cafe_link, :image, :latitude, :longitude)
+    params.require(:post).permit(:cafe_name, :body, :address, :cafe_link, :image, :latitude, :longitude, tag_ids: [])
   end
 
   def prepare_meta_tags(post)

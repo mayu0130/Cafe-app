@@ -16,8 +16,12 @@ Rails.application.routes.draw do
       collection do
         get :bookmarks
       end
-
   end
+
+  resources :tags, only: [:show] do
+    resources :posts, only: [:index]
+  end
+
   resource :profile, only: [:show, :edit, :update]
   resources :accounts, only: [:show]
   resources :bookmarks, only: %i[create destroy]
