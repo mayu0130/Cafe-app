@@ -32,6 +32,14 @@
         <%= f.text_field :cafe_link, class: 'border border-gray-200 rounded-lg w-full p-2' %>
       </div>
 
+      <div>
+        <%= f.label :tags %><br>
+        <% @tags.each do |tag| %>
+          <%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag) %>
+          <%= tag.name %><br>
+        <% end %>
+      </div>
+
       <div class="flex justify-center">
         <%= f.submit '投稿する', class: 'bg-teal text-white font-bold mt-8 py-2 px-12 rounded-lg hover:bg-opacity-70 max-w-xs' %>
       </div>

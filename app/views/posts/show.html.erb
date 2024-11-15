@@ -67,6 +67,15 @@
 </style>
 <div id="map"></div>
 
+    <div class="mt-6 flex items-center mb-8">
+  <%= image_tag 'tag.png', class: 'w-6 h-6 mr-2' %>
+  <% @post.tags.each do |tag| %>
+    <div class="text-brown mr-3">
+      <%= link_to tag.name, tag_path(tag), class: 'text-brown' %>
+    </div>
+  <% end %>
+</div>
+
 
     <div class="flex items-center mb-8">
       <%= image_tag 'link.png', class: 'w-6 h-6 mr-2' %>
