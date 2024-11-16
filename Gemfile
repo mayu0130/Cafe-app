@@ -68,3 +68,5 @@ gem 'mini_magick'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'geocoder'
+
+gem 'importmap-rails'
