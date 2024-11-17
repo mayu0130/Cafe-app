@@ -10,6 +10,16 @@ Rails.application.routes.draw do
   get 'service-worker' => 'rails/pwa#service_worker', as: :pwa_service_worker
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
+  resources :users, only: [] do
+    member do
+      get :following
+      get :followers
+      post :follow, to: 'relationships#follow'
+      post :unfollow, to: 'relationships#unfollow'
+    end
+  end
+
+
   root to: 'posts#index'
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
@@ -23,7 +33,10 @@ Rails.application.routes.draw do
   end
 
   resource :profile, only: [:show, :edit, :update]
-  resources :accounts, only: [:show]
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:create]
+    resources :unfollows, only: [:create]
+  end
   resources :bookmarks, only: %i[create destroy]
 
   get 'images/ogp.png', to: 'images#ogp', as: 'images_ogp'
