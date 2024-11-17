@@ -17,6 +17,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
+    <%= javascript_importmap_tags %>
   </head>
 
   <div class="bg-teal">
@@ -35,6 +36,7 @@
           <%= link_to image_tag('bookmark.png', class: 'h-11 mt-1'), bookmarks_posts_path %>
           <%= link_to image_tag('diagnose.png', class: 'h-12'), '#' %>
           <%= link_to image_tag('logout.png', class: 'h-12'), destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
+
           <% else %>
           <%= link_to image_tag('login.png', class: 'h-12'), new_user_session_path %>
 	     <% end %>
