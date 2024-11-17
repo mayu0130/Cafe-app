@@ -1,0 +1,26 @@
+<div class="bg-cream">
+  <div class="container mx-auto pt-10 h-screen">
+    <h1 class="text-2xl font-bold mb-6 text-center text-brown">
+      <%= @user.profile&.nickname || @user.display_name %> がフォローしているユーザー
+    </h1>
+
+    <% if @following_users.any? %>
+      <ul class="space-y-4 max-w-md mx-auto">
+        <% @following_users.each do |user| %>
+          <li class="bg-white border border-gray-300 rounded-lg p-4 mb-4 shadow-sm flex items-center space-x-4">
+            <% if user.avatar_image.present? %>
+              <%= image_tag user.avatar_image, class: 'w-12 h-12 rounded-full border border-gray-200 shadow-sm' %>
+            <% else %>
+              <%= image_tag 'default-avatar.png', class: 'w-12 h-12 rounded-full border border-gray-200 shadow-sm' %>
+            <% end %>
+            <span>
+              <%= link_to (user.profile&.nickname || user.display_name), account_path(user), class: 'text-gray-700 hover:text-gray-400 font-medium text-lg' %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-gray-600 text-center mt-6">フォローしているユーザーがいません</p>
+    <% end %>
+  </div>
+</div>
