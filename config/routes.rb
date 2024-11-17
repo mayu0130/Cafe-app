@@ -19,7 +19,6 @@ Rails.application.routes.draw do
     end
   end
 
-
   root to: 'posts#index'
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
