@@ -29,8 +29,9 @@
       <% if user_signed_in? %>
         <div class="flex items-center space-x-4">
           <%= link_to image_tag(
-          (current_user.profile&.avatar&.attached? ? url_for(current_user.profile.avatar) : 'profile.png'),
-          class: 'w-12 h-12 rounded-full border-2 shadow-sm'
+            (current_user.profile&.avatar&.persisted? && current_user.profile.avatar.attached?) ?
+            url_for(current_user.profile.avatar) : 'profile.png',
+            class: 'w-12 h-12 rounded-full border-2 shadow-sm'
           ), profile_path %>
           </div>
           <%= link_to image_tag('bookmark.png', class: 'h-11 mt-1'), bookmarks_posts_path %>
