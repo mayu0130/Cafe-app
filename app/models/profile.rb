@@ -1,6 +1,5 @@
 class Profile < ApplicationRecord
    validates :nickname, presence: true, length: { maximum: 50 }
-   validates :birthday, presence: true
    validates :mbti, format: { with: /\A[A-Z]{4}\z/, message: 'は4文字のMBTIタイプである必要があります' }, allow_blank: true
    validates :address, length: { maximum: 100 }, allow_blank: true
    validates :introduction, presence: true, length: { maximum: 500 }
