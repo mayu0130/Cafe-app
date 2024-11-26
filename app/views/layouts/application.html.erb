@@ -35,7 +35,7 @@
           ), profile_path %>
           </div>
           <%= link_to image_tag('bookmark.png', class: 'h-11 mt-1'), bookmarks_posts_path %>
-          <%= link_to image_tag('diagnose.png', class: 'h-12'), '#' %>
+          <%= link_to image_tag('diagnose.png', class: 'h-12'), diagnoses_path %>
           <%= link_to image_tag('logout.png', class: 'h-12'), destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
 
           <% else %>
