@@ -70,3 +70,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'geocoder'
 
 gem 'importmap-rails'
+
+gem 'ransack'

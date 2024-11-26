@@ -14,4 +14,12 @@ class Post < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[cafe_name body address]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
 end
