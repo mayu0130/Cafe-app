@@ -43,7 +43,7 @@ Rails.application.routes.draw do
    get 'diagnoses', to: 'diagnoses#index'
    resources :coffee_beans, only: [:new] do
     collection do
-      get :result 
+      get :result
     end
   end
 

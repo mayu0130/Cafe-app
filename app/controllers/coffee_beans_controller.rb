@@ -12,7 +12,7 @@ class CoffeeBeansController < ApplicationController
   def result
     # answersがnilの場合は処理を中止してエラーメッセージを表示
     if params[:answers].nil?
-      flash[:error] = "すべての質問に答えてください。"
+      flash[:error] = 'すべての質問に答えてください。'
       redirect_to new_coffee_bean_path
       return
     end
