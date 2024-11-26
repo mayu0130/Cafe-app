@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   helper_method :prepare_meta_tags
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
   end
 
   def show
