@@ -79,7 +79,8 @@
 
     <div class="flex items-center mb-8">
       <%= image_tag 'link.png', class: 'w-6 h-6 mr-2' %>
-      <%= link_to @post.cafe_link, @post.cafe_link, target: "_blank", rel: "noopener noreferrer", class: "text-gray-700" %>
+      <%= link_to sanitize(@post.cafe_link), target: "_blank", rel: "noopener noreferrer", class: "text-gray-700" %>
+
     </div>
 
     <%= link_to new_post_path do %>
