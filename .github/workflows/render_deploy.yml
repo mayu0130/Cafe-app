@@ -8,7 +8,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: ttskch/render-deploy@v1.0.0
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Trigger Render Deployment
+        uses: ttskch/render-deploy@v1.0.0
         with:
           api-key: ${{ secrets.RENDER_API_KEY }}
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
