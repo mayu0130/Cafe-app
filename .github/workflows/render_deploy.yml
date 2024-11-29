@@ -1,7 +1,6 @@
 name: Render Deploy
 
 on:
-  push:
   pull_request:
 
 jobs:
