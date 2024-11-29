@@ -2,7 +2,8 @@ name: Render Deploy
 
 on:
   push:
-  pull_request:
+    branches:
+      - main # 必要に応じて変更
 
 jobs:
   deploy:
@@ -11,10 +12,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Debug API Key and Service ID
+        run: |
+          echo "API Key: ${{ secrets.RENDER_API_KEY }}"
+          echo "Service ID: ${{ secrets.RENDER_SERVICE_ID }}"
+
       - name: Trigger Render Deployment
-        uses: ttskch/render-deploy@v1.0.0
+        uses: ttskch/render-deploy@latest
         with:
           api-key: ${{ secrets.RENDER_API_KEY }}
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          interval: 20 # optional
-          timeout: 300 # optional
+          interval: 120  # 2分間隔
+          timeout: 900   # 15分タイムアウト
