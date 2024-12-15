@@ -58,6 +58,15 @@ class PostsController < ApplicationController
     @bookmark_posts = current_user.bookmarks.includes(:post).map(&:post)
   end
 
+  def autocomplete
+    if params[:query].present?
+      @posts = Post.where('cafe_name LIKE ?', "%#{params[:query]}%").limit(10)
+      render json: @posts.map(&:cafe_name)
+    else
+      render json: []
+    end
+  end
+
   private
   def post_params
     params.require(:post).permit(:cafe_name, :body, :address, :cafe_link, :image, :latitude, :longitude, tag_ids: [])

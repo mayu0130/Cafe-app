@@ -5,10 +5,15 @@
       <i class="fa fa-plus text-brown text-2xl"></i>
       <span class="text-brown text-xl font-bold ml-2">投稿する</span>
     <% end %>
-    <%= search_form_for @q, class: 'd-flex mb-3' do |f| %>
-        <%= f.search_field :cafe_name_or_body_or_address_cont, class: 'mt-2 rounded-md p-1 text-brown me-2 text-sm', placeholder: '検索キーワードを入力' %>
-        <%= f.submit '検索', class: 'bg-brown text-white p-1 pl-2 pr-2 rounded-md' %>
-      <% end %>
+    <%= search_form_for @q, url: posts_path, method: :get, class: 'd-flex relative' do |f| %>
+      <%= f.search_field :cafe_name_cont, id: "search-input", class: "form-control me-2", placeholder: "カフェ名を入力", autocomplete: "off" %>
+      <button class="btn btn-outline-success" type="submit">検索</button>
+    <% end %>
+
+    <ul id="autocomplete-results" class="absolute mt-1 max-h-60 overflow-y-auto bg-white shadow-lg rounded border w-full hidden">
+    </ul>
+  <script src="/assets/autocomplete.js"></script>
+
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8 pb-8">
       <% @posts.each do |post| %>
