@@ -25,3 +25,26 @@ ja:
       title: "プライバシーポリシー"
     terms_of_service:
       title: "利用規約"
+  users:
+    following:
+      title: "フォロー一覧"
+    followers:
+      title: "フォロワー一覧"
+  diagnoses:
+    index:
+      title: "カフェ診断一覧"
+  coffee_beans:
+    new:
+      title: "コーヒー豆診断"
+    result:
+      title: "コーヒー豆診断：結果"
+  desserts:
+    new:
+      title: "カフェデザート診断"
+    result:
+      title: "カフェデザート診断：結果"
+  drinks:
+    new:
+      title: "カフェドリンク診断"
+    result:
+      title: "カフェドリンク診断：結果"
