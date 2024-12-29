@@ -82,6 +82,7 @@ ja:
       success: "%{kind} アカウントによる認証に成功しました。"
     passwords:
       edit:
+        title: パスワード再設定
         change_my_password: パスワードを変更する
         change_your_password: パスワードを変更
         confirm_new_password: 確認用新しいパスワード
