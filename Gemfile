@@ -41,7 +41,7 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem 'brakeman', '~> 6.2.2'
+  gem 'brakeman', '~> 7.0.0'
 
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
