@@ -91,8 +91,9 @@
 
     <div class="flex items-center mb-8 hover:opacity-70">
       <i class="fa-solid fa-link fa-xl text-brown mr-2"></i>
-      <% if @post.cafe_link =~ /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ %>
-        <%= link_to ERB::Util.html_escape(@post.cafe_link), @post.cafe_link, target: "_blank", rel: "noopener noreferrer", class: "link link-neutral" %>
+     <% cafe_link = @post.cafe_link %>
+      <% if cafe_link.present? && cafe_link =~ /\Ahttps?:\/\/[\S]+\z/ %>
+        <%= link_to cafe_link, cafe_link, target: "_blank", rel: "noopener noreferrer", class: "link link-neutral" %>
       <% end %>
     </div>
 
