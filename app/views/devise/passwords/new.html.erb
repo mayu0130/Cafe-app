@@ -1,17 +1,23 @@
 <% content_for(:title, t('.forgot_your_password')) %>
-<h2>Forgot your password?</h2>
+<div class="flex items-center justify-center min-h-screen bg-cream">
+  <div class="w-full max-w-md p-8 bg-white rounded-lg mt-[-8rem] border border-brown">
+    <h2 class="text-2xl text-brown font-bold text-center mb-4"><%= t('.forgot_your_password') %></h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "space-y-4" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="mb-4">
+        <%= f.label :email, class: "block text-gray-700 font-bold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
+      </div>
+
+      <div class="actions flex justify-center">
+        <%= f.submit t('.send_me_reset_password_instructions'), class: "btn bg-teal text-white w-full text-lg" %>
+      </div>
+    <% end %>
+
+     <div class="flex flex-col items-center justify-center mt-4">
+      <%= render "devise/shared/links", class: "text-center text-sm" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
