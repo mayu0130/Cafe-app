@@ -32,9 +32,11 @@ class User < ApplicationRecord
     if profile&.avatar&.attached?
       profile.avatar
     else
-      'profile.png'
+      '<i class="fa-regular fa-user"></i>'.html_safe
     end
   end
+
+
   def bookmark(post)
     bookmark_posts << post
   end
