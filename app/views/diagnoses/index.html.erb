@@ -1,14 +1,53 @@
 <% content_for(:title, t('.title')) %>
-<body class="bg-cream">
+<body class="bg-white">
   <div class="container mx-auto mt-8 mb-12 px-32 py-6">
 
-    <h1 class="text-center text-brown text-3xl font-bold mb-8">診断する</h1>
+    <h1 class="text-center text-brown text-3xl font-bold mb-8"> <i class="fa-solid fa-book-quran fa-lg mr-2 text-brown"></i>カフェ診断</h1>
 
-    <div class="space-y-4">
-      <%= link_to 'カフェドリンク 診断する', new_drink_path, class: 'block px-4 py-8 bg-teal text-white font-bold  rounded-md text-center hover:opacity-70' %>
-      <%= link_to 'コーヒー豆 診断する', new_coffee_bean_path, class: 'block px-4 py-8 bg-teal text-white font-bold  rounded-md text-center hover:opacity-70' %>
-      <%= link_to 'カフェデザート 診断する', new_dessert_path, class: 'block px-4 py-8 bg-teal text-white font-bold rounded-md text-center hover:opacity-70' %>
+      <div class="mt-12 flex items-center space-x-4">
+        <div tabindex="0" class="collapse collapse-plus border-2 border-brown bg-cream ">
+          <input type="checkbox" class="peer" />
+          <div class="collapse-title text-xl font-medium text-center">
+            <i class="fa-solid fa-tablets text-teal mr-2"></i>
+            <span class="text-brown font-bold">コーヒー豆診断</span>
+          </div>
+          <div class="collapse-content">
+            <p class="text-gray-700">エチオピア豆・コロンビア豆・ブラジル豆・ハワイコナ豆の中から、あなたにぴったりのコーヒー豆を診断します！それぞれの豆の特徴を基に、あなたの好みに最適な一杯を見つけましょう！</p>
+          </div>
+        </div>
+        <%= link_to '診断する', new_coffee_bean_path, class: 'btn w-40 bg-teal text-white' %>
+      </div>
+      <div class="mt-4 flex items-center space-x-4">
+        <div tabindex="0" class="collapse collapse-plus border-2 border-brown bg-cream">
+          <input type="checkbox" class="peer" />
+          <div class="collapse-title text-xl font-medium text-center">
+            <i class="fa-solid fa-mug-hot text-teal mr-2"></i>
+            <span class="text-brown font-bold">カフェドリンク診断</span>
+          </div>
+          <div class="collapse-content">
+            <p>抹茶系・ソイ系・カフェラテ・ほうじ茶系から、
+            今の気分にぴったりなカフェドリンクを診断します！
+            あなたのお気に入りの一杯がきっと見つかるはず！</p>
+          </div>
+        </div>
+        <%= link_to '診断する', new_drink_path, class: 'btn w-40 bg-cream bg-teal text-white' %>
+      </div>
+      <div class="mt-4 flex items-center space-x-4">
+  <div tabindex="0" class="collapse collapse-plus border-2 border-brown bg-cream">
+    <input type="checkbox" class="peer" />
+    <div class="collapse-title text-xl font-medium text-center">
+      <i class="fa-solid fa-cake-candles text-teal mr-2"></i>
+      <span class="text-brown font-bold">カフェデザート診断</span>
     </div>
+    <div class="collapse-content">
+      <p class="text-gray-700">レアチーズケーキ・チョコレートケーキ・アップルパイ・フルーツパフェの中から、あなたにぴったりのカフェデザートを診断します！あなたの好みに合わせた最高の一品を見つけましょう！</p>
+    </div>
+  </div>
+  <%= link_to '診断する', new_dessert_path, class: 'btn w-40 bg-teal text-white' %>
+</div>
+
+
+
 
   </div>
 
