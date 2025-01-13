@@ -1,22 +1,27 @@
 <% content_for(:title, t('.title')) %>
 <body class="bg-cream">
   <div class="container mx-auto mt-8 mb-12 px-32 py-6">
-    <h1 class="text-brown text-3xl font-bold mb-8">コーヒー豆診断</h1>
+    <h1 class="text-brown text-3xl font-bold mb-8">
+      <i class="fa-solid fa-tablets text-teal mr-2"></i>
+      コーヒー豆診断
+    </h1>
 
     <%= form_with url: result_coffee_beans_path, method: :get, local: true do |f| %>
       <% @questions.each do |question| %>
         <div class="mb-8">
-          <h3 class="text-brown"><%= question[:question] %></h3>
+          <h3 class="text-brown font-bold mb-2"><%= question[:question] %></h3>
           <% question[:options].each_with_index do |option, index| %>
-            <div>
-              <%= radio_button_tag "answers[#{question[:id]}]", option, false, id: "question_#{question[:id]}_option_#{index}" %>
+            <div class="flex items-center space-x-2">
+              <%= radio_button_tag "answers[#{question[:id]}]", option, false, id: "question_#{question[:id]}_option_#{index}", class: 'radio radio-primary radio-xs' %>
               <%= label_tag "question_#{question[:id]}_option_#{index}", option %>
             </div>
+
+
           <% end %>
         </div>
       <% end %>
 
-      <%= f.submit "診断結果を見る", class: "bg-brown text-white px-22 py-3 rounded-md" %>
+      <%= f.submit "診断結果を表示", class: "btn bg-teal text-white" %>
     <% end %>
   </div>
 </body>
