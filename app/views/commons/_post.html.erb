@@ -10,21 +10,20 @@
       <%= link_to post.cafe_name, post_path(post), class: 'text-brown hover:opacity-70 text-20 font-bold' %>
     </h2>
     <div class="mt-2 flex items-center">
-      <% if post.user.present? %>
-        <% if post.user.avatar_image.present? %>
-          <%= link_to account_path(post.user) do %>
-            <%= image_tag post.user.avatar_image, class: 'w-6 h-6 rounded-full mr-2' %>
-          <% end %>
+
+      <%= link_to account_path(post.user), class: 'flex items-center' do %>
+      <div class="flex items-center">
+        <% if post.user.profile&.avatar&.attached? %>
+          <%= image_tag url_for(post.user.profile.avatar), class: 'w-8 h-8 rounded-full mr-2' %>
         <% else %>
-          <%= link_to account_path(post.user), class: 'flex items-center', onclick: "alert('プロフィールが設定されていません'); return false;" do %>
-            <%= image_tag 'eyecatch.png', class: 'w-6 h-6 rounded-full mr-3' %>
-            <span><%= post.user.display_name %></span>
-          <% end %>
+          <i class="fa-regular fa-circle-user fa-xl text-brown mr-2"></i>
         <% end %>
-        <p class="text-gray-700 font-bold"><%= post.user.profile&.nickname || post.user.display_name %></p>
+        <p class="text-gray-700 font-bold hover:opacity-70"><%= post.user.profile&.nickname || post.user.display_name %></p>
+      </div>
+
       <% end %>
     </div>
-    <p class="text-gray-500">
+    <p class="text-gray-500 mt-1">
       <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
     </p>
   </div>
