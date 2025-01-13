@@ -32,13 +32,13 @@ class DrinksController < ApplicationController
     end
 
     result_cafe_time = if answer_counts['A'] > answer_counts['B'] && answer_counts['A'] > answer_counts['C']
-      '抹茶系がおすすめ！'
+      '抹茶系'
     elsif answer_counts['B'] > answer_counts['C']
-      'ソイ系がおすすめ！'
+      'ソイ系'
     elsif answer_counts['C'] > answer_counts['D']
-      'カフェラテがおすすめ！'
+      'カフェラテ'
     else
-      'ほうじ茶系がおすすめ！'
+      'ほうじ茶系'
     end
 
     @result = result_cafe_time
