@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
   searchInput.addEventListener("input", function() {
     const query = searchInput.value;
 
-    // 入力が2文字以上の場合のみ検索
-    if (query.length > 1) {
+    // 入力が1文字以上の時に検索
+    if (query.length > 0) {
       fetch(`/posts/autocomplete?query=${query}`)
         .then(response => response.json())
         .then(data => {
@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
           console.error("Error fetching autocomplete data:", error);
           resultsList.classList.add("hidden"); // エラー時に非表示
         });
-    } else {
-      resultsList.classList.add("hidden"); // 入力が少ない場合は非表示
     }
   });
 
