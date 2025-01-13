@@ -1,29 +1,30 @@
 <body class="bg-cream">
   <div class="container mt-6 mx-auto p-4 flex justify-center">
     <div class="flex flex-col items-center border-2 border-brown px-24 py-12 rounded-2xl">
-      <div class="flex items-center space-x-4 mb-4">
+      <div class="flex items-center space-x-4">
         <% if @profile&.avatar&.attached? %>
           <%= image_tag @profile.avatar, class: 'w-12 h-12 border rounded-full' %>
         <% else %>
-          <%= image_tag 'profile.png', class: 'w-12 h-12 border rounded-full' %>
+         <i class="fa-regular fa-circle-user fa-2xl text-brown mr-2"></i>
         <% end %>
         <div>
           <h2 class="text-3xl text-brown font-semibold mb-2 ml-2">
             <%= @profile&.nickname.presence || @user&.display_name || 'ニックネーム：未記入' %>
           </h2>
-          <p class="text-gray-600 text-2xl ml-2">
-            <%= @profile&.mbti || 'MBTI:未記入' %> |
-            <%= @profile&.address || '居住地：未記入' %>
-          </p>
         </div>
       </div>
+      <div class="divider"></div>
+      <p class="text-gray-600 text-xl ml-2">
+        <%= @profile&.mbti || 'MBTI:未記入' %> |
+        <%= @profile&.address || '居住地：未記入' %>
+      </p>
 
-      <p class="mb-2 text-gray-600 text-center text-2xl">
+      <p class="text-gray-600 text-center text-xl">
         <%= @profile&.introduction || '自己紹介：未記入' %>
       </p>
 
 
-      <div class="flex justify-center space-x-4 mt-6">
+      <div class="flex justify-center space-x-4">
         <% if @profile&.x_link.present? %>
           <%= link_to @profile.x_link, class: 'text-blue-500 hover:text-blue-700', target: "_blank", rel: "noopener" do %>
             <i class="fa-brands fa-x-twitter text-3xl text-brown"></i>
@@ -35,31 +36,44 @@
           <% end %>
         <% end %>
       </div>
-      <div class="flex justify-center space-x-4 mt-6">
+
+      <div class="divider"></div>
+
+      <div class="flex justify-center items-center space-x-4">
+        <%= link_to "フォロー一覧", following_user_path(user), class: 'text-brown btn' %>
+        <%= link_to 'フォロワー一覧', followers_user_path(user), class: 'text-brown btn'%>
+      </div>
+
+       <div class="flex justify-center space-x-4 mt-6">
         <% if current_user == @user %> <!-- current_userと@userが一致する時のみ表示 -->
-          <%= link_to image_tag('edit.png', alt: '編集', class: 'w-6 h-6 cursor-pointer'), edit_profile_path %>
+          <%= link_to  edit_profile_path do %>
+            <i class="fa-regular fa-pen-to-square text-brown"></i>
+            編集する
+          <% end %>
         <% else %>
           <% if current_user&.has_followed?(user) %>
             <div class="text-brown bg-teal py-2 px-6 rounded-full shadow-md">
-            <%= button_to 'フォローをやめる', account_unfollows_path(user), data: { turbo_method: :post} %>
+            <%= button_to account_unfollows_path(user), data: { turbo_method: :post} do %>
+            <i class="fa-solid fa-user-minus mr-2"></i>
+            フォローをやめる
+            <% end %>
             </div>
           <% else %>
-           <div class="text-brown bg-teal py-2 px-6 rounded-full shadow-md">
-            <%= button_to 'フォローをする', account_follows_path(user), data: { turbo_method: :post } %>
+           <div class="text-brown bg-teal py-2 px-6 rounded-full shadow-md mt-2">
+            <%= button_to account_follows_path(user), data: { turbo_method: :post } do %>
+            <i class="fa-solid fa-user-plus mr-2"></i>
+            フォローをする
+            <% end %>
              </div>
           <% end %>
         <% end %>
-      </div>
-      <div class="mt-4 flex justify-center items-center space-x-4 p-3">
-        <%= link_to "フォロー一覧", following_user_path(user), class: 'text-brown' %>
-        <%= link_to 'フォロワー一覧', followers_user_path(user), class: 'text-brown'%>
       </div>
     </div>
   </div>
 </div>
 
 
- <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8 pb-8">
+ <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pb-8">
     <% @posts.each do |post| %>
       <%= render 'commons/post', post: post %>
      <% end %>
