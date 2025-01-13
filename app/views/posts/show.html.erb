@@ -90,9 +90,9 @@
 
 
     <div class="flex items-center mb-8 hover:opacity-70">
-      <%= link_to sanitize(@post.cafe_link), target: "_blank" do %>
-        <i class="fa-solid fa-link fa-xl text-brown mr-2"></i>
-        <%= link_to @post.cafe_link, @post.cafe_link, class: 'link link-neutral' %>
+      <i class="fa-solid fa-link fa-xl text-brown mr-2"></i>
+      <% if @post.cafe_link =~ /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ %>
+        <%= link_to ERB::Util.html_escape(@post.cafe_link), @post.cafe_link, target: "_blank", rel: "noopener noreferrer", class: "link link-neutral" %>
       <% end %>
     </div>
 
