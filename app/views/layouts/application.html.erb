@@ -29,30 +29,53 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <div class="bg-teal">
+ <div class="bg-teal">
   <header class="flex justify-between items-center p-4 mx-8">
     <div>
-      <%= link_to image_tag('logo.png', class: 'h-16'), root_path %>
+      <%= link_to image_tag('logo.png', class: 'h-16 hover:opacity-70'), root_path %>
     </div>
-    <div class="flex space-x-4">
+    <div class="flex items-center space-x-4">
       <% if user_signed_in? %>
-        <div class="flex items-center space-x-4">
-          <%= link_to image_tag(
-            (current_user.profile&.avatar&.persisted? && current_user.profile.avatar.attached?) ?
-            url_for(current_user.profile.avatar) : 'profile.png',
-            class: 'w-12 h-12 rounded-full border-2 shadow-sm'
-          ), profile_path %>
-          </div>
-          <%= link_to image_tag('bookmark.png', class: 'h-11 mt-1'), bookmarks_posts_path %>
-          <%= link_to image_tag('diagnose.png', class: 'h-12'), diagnoses_path %>
-          <%= link_to image_tag('logout.png', class: 'h-12'), destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %>
-
-          <% else %>
-          <%= link_to image_tag('login.png', class: 'h-12'), new_user_session_path %>
-	     <% end %>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="マイページ">
+          <%= link_to profile_path do %>
+            <% if current_user.profile&.avatar&.persisted? && current_user.profile.avatar.attached? %>
+              <%= image_tag url_for(current_user.profile.avatar), class: 'w-9 h-9 rounded-full border-2' %>
+            <% else %>
+              <i class="fa-regular fa-circle-user fa-2xl text-brown"></i>
+            <% end %>
+          <% end %>
+        </div>
+         <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="投稿をする">
+          <%= link_to new_post_path do %>
+            <i class="fa-solid fa-circle-plus fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ブックマーク一覧">
+          <%= link_to bookmarks_posts_path do %>
+            <i class="fa-regular fa-bookmark fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="カフェ診断">
+          <%= link_to diagnoses_path do %>
+            <i class="fa-solid fa-book-quran fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ログアウト">
+          <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-arrow-right-from-bracket fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ログイン">
+          <%= link_to new_user_session_path do %>
+            <i class="fa-solid fa-arrow-right-to-bracket fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </header>
 </div>
+
   <body>
   <% flash.each do |message_type, message| %>
   <div class="<%= flash_background_color(message_type) %> px-6 py-4 rounded-md text-brown">
@@ -65,21 +88,18 @@
       <div class="container mx-auto flex justify-between items-start">
 
         <div class="flex flex-col space-y-4">
-          <%= link_to image_tag('logo.png', class: 'h-10'), root_path %>
+          <%= link_to image_tag('logo.png', class: 'h-10 hover:opacity-70'), root_path %>
 
           <div class="flex space-x-4">
-            <%= link_to 'お問い合わせ', contact_path, class: 'text-brown font-bold' %>
-            <%= link_to '利用規約', terms_of_service_path, class: 'text-brown font-bold' %>
-            <%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'text-brown font-bold' %>
+            <%= link_to 'お問い合わせ', contact_path, class: 'text-brown font-bold hover:opacity-70' %>
+            <%= link_to '利用規約', terms_of_service_path, class: 'text-brown font-bold hover:opacity-70' %>
+            <%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'text-brown font-bold hover:opacity-70' %>
           </div>
         </div>
 
         <div class="flex space-x-4 items-start">
-          <%= link_to '<i class="fa-brands fa-x-twitter"></i>'.html_safe, 'https://x.com/m_0130k', target: '_blank', rel: 'noopener noreferrer', class: 'text-brown text-3xl font-bold' %>
-          <%= link_to '<i class="fa-brands fa-instagram"></i>'.html_safe, 'https://www.instagram.com/maaaayu__0527/?igsh=b2g4ejUyYXpmM3d5&utm_source=qr', target: '_blank', rel: 'noopener noreferrer', class: 'text-brown text-3xl font-bold' %>
+          <%= link_to '<i class="fa-brands fa-x-twitter"></i>'.html_safe, 'https://x.com/m_0130k', target: '_blank', rel: 'noopener noreferrer', class: 'text-brown text-3xl font-bold hover:opacity-70' %>
         </div>
       </div>
     </footer>
-
-
 </html>

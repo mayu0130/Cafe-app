@@ -19,7 +19,7 @@
 
       <div class="mb-4">
         <%= f.label :image, 'アップロード画像', class: 'block text-brown bg-cream font-semibold mb-2' %>
-        <%= f.file_field :image, accept: "image/*", class: 'border border-gray-200 rounded-lg w-full p-2 bg-white' %>
+        <%= f.file_field :image, accept: "image/*", class: 'file-input file-input-bordered w-full' %>
       </div>
 
       <div class="mb-4">
@@ -33,15 +33,19 @@
       </div>
 
       <div>
-        <%= f.label :tags %><br>
+        <%= f.label :タグ, class: 'block text-brown font-semibold mb-2' %>
         <% @tags.each do |tag| %>
-          <%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag) %>
-          <%= tag.name %><br>
+          <div class="flex items-center space-x-2 mb-1 mr-1">
+            <%= check_box_tag "post[tag_ids][]", tag.id, @post.tags.include?(tag), class: "checkbox border-brown [--chkbg:theme(colors.brown)] [--chkfg:white] checked:border-white" %>
+            <div class="ml-2">
+              <%= tag.name %>
+            </div>
+          </div>
         <% end %>
       </div>
 
       <div class="flex justify-center">
-        <%= f.submit '投稿する', class: 'bg-teal text-white font-bold mt-8 py-2 px-12 rounded-lg hover:bg-opacity-70 max-w-xs' %>
+        <%= f.submit '投稿する', class: 'mt-4 btn w-40 bg-teal text-white' %>
       </div>
     <% end %>
   </div>
