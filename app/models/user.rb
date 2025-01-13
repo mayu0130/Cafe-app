@@ -36,7 +36,6 @@ class User < ApplicationRecord
     end
   end
 
-
   def bookmark(post)
     bookmark_posts << post
   end
