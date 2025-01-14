@@ -77,7 +77,9 @@ Rails.application.configure do
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'https://www.cafe-magco.com/' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'https://www.cafe-magco.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
@@ -85,7 +87,7 @@ Rails.application.configure do
     domain:               'cafe-magco.com', #自分のアプリのドメイン
     user_name:            ENV['MAILER_SENDER'],
     password:             ENV['MAILER_PASSWORD'],
-    authentication:       'plain',
+    authentication:       'login',
     enable_starttls_auto: true
   }
 
