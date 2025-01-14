@@ -10,7 +10,7 @@
       <div class="mb-4">
         <%= f.label :password, t('.new_password'), class: "block text-gray-700 font-bold" %>
         <% if @minimum_password_length %>
-          <em class="text-sm text-gray-600">(<%= @minimum_password_length %> characters minimum)</em><br />
+          <small class="text-sm text-gray-500"><%= t('devise.shared.minimum_password_length', count: 6)  %></small>
         <% end %>
         <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
       </div>
