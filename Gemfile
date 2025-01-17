@@ -74,3 +74,7 @@ gem 'importmap-rails'
 gem 'ransack'
 
 gem 'aws-sdk-s3', require: false
+
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-google-oauth2'
