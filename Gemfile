@@ -41,7 +41,7 @@ group :development, :test do
   gem 'debug', platforms: %i[ mri windows ], require: 'debug/prelude'
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
-  gem 'brakeman', '~> 6.2.2'
+  gem 'brakeman', '~> 7.0.0'
 
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
@@ -74,3 +74,7 @@ gem 'importmap-rails'
 gem 'ransack'
 
 gem 'aws-sdk-s3', require: false
+
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
