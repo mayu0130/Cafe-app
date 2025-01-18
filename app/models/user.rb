@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[google_oauth2]
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :omniauthable, :confirmable, omniauth_providers: %i[google_oauth2]
 
   validates :uid, uniqueness: { scope: :provider }
 
@@ -68,9 +68,11 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.name = auth.info.name
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.avatar = auth.info.image
-      user.skip_confirmation!
+
+      # メール認証をスキップ（Googleログインは確認不要）
+      user.confirmed_at = Time.current if user.respond_to?(:confirmed_at)
     end
   end
 
