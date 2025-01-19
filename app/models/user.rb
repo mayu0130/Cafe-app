@@ -71,7 +71,6 @@ class User < ApplicationRecord
     user
   end
 
-
   private
 
   def get_user_id(user)
