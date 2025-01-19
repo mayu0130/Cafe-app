@@ -1,0 +1,46 @@
+<div class="bg-teal">
+  <header class="flex justify-between items-center p-4 mx-8">
+    <div>
+      <%= link_to image_tag('logo.png', class: 'h-16 hover:opacity-70'), root_path %>
+    </div>
+    <div class="flex items-center space-x-4">
+      <% if user_signed_in? %>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="マイページ">
+          <%= link_to profile_path do %>
+            <% if current_user.profile&.avatar&.persisted? && current_user.profile.avatar.attached? %>
+              <%= image_tag url_for(current_user.profile.avatar), class: 'w-9 h-9 rounded-full border-2' %>
+            <% else %>
+              <i class="fa-regular fa-circle-user fa-2xl text-brown"></i>
+            <% end %>
+          <% end %>
+        </div>
+         <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="投稿をする">
+          <%= link_to new_post_path do %>
+            <i class="fa-solid fa-circle-plus fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ブックマーク一覧">
+          <%= link_to bookmarks_posts_path do %>
+            <i class="fa-regular fa-bookmark fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="カフェ診断">
+          <%= link_to diagnoses_path do %>
+            <i class="fa-solid fa-book-quran fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ログアウト">
+          <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
+            <i class="fa-solid fa-arrow-right-from-bracket fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ログイン">
+          <%= link_to new_user_session_path do %>
+            <i class="fa-solid fa-arrow-right-to-bracket fa-2xl text-brown"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </header>
+</div>
