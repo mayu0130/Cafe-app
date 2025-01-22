@@ -124,19 +124,20 @@
     </div>
 
     <div class="bg-cream p-4 rounded-xl">
-      <div class="flex items-center mt-2 mb-4 ml-2">
-        <div class="flex items-center">
+      <div class="mt-2 mb-4 ml-2">
+        <div class="flex items-center mb-4">
           <i class="fa-solid fa-comment fa-xl mr-2 text-brown"></i>
-          <h2 class="text-brown text-xl font-bold">コメント一覧</h2>
+          <h2 class="text-brown text-xl font-bold">コメント</h2>
         </div>
 
-        <%= link_to new_post_comment_path(@post) do %>
-          <div class="flex items-center cursor-pointer hover:opacity-70 ml-10">
-            <i class="fa-solid fa-comment-medical fa-lg mr-2 text-brown"></i>
-            <span class="text-gray-700 font-bold">コメントを追加する</span>
-          </div>
-        <% end %>
-      </div>
+      <%= link_to new_post_comment_path(@post) do %>
+        <div class="flex flex-items-center  cursor-pointer hover:opacity-70">
+          <i class="fa-solid fa-comment-medical fa-lg mb-2 text-brown"></i>
+          <span class="text-gray-700 font-bold">コメントを追加</span>
+        </div>
+      <% end %>
+    </div>
+
 
       <div class="divider"></div>
 

@@ -1,15 +1,16 @@
 <% content_for(:title, t('.title')) %>
 <body class="bg-cream">
   <div class="container mx-auto mt-8 mb-20 px-32 py-6">
-    <h1 class="text-brown text-3xl font-bold mb-10">
+    <h1 class="text-brown text-2xl font-bold mb-10">
       <i class="fa-solid fa-cake-candles text-teal mr-2"></i>
       カフェデザートの診断結果
     </h1>
 
-    <p class="mb-10 text-2xl text-gray-700">あなたにおすすめのカフェデザートは：<%= @result %></p>
+    <p class="mb-10 text-lg text-gray-700">
+      あなたにおすすめのカフェデザートは：<br><%= @result %>
+    </p>
 
-
-    <%= link_to 'もう一度診断する', new_dessert_path, class: 'btn bg-teal text-white' %>
+    <%= link_to 'もう一度診断する', new_dessert_path, class: 'btn bg-teal text-white mb-2' %>
     <%= link_to '診断一覧ページに戻る', diagnoses_path, class: 'btn bg-teal text-white' %>
   </div>
 </body>
