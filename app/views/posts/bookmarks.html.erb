@@ -1,19 +1,19 @@
+
 <% content_for(:title, t('.title')) %>
-<body class= "bg-cream">
-  <div class="container mx-auto  h-screen">
-  <div class="text-3xl text-brown font-bold mt-8">
+<body class="bg-cream">
+  <div class="container mx-auto h-screen">
+    <div class="text-3xl text-brown font-bold mt-8">
       <i class="fa-solid fa-bookmark fa-sm text-brown mr-2"></i>
       ブックマーク一覧
-  </div>
-      <% if @bookmark_posts.present? %>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-6 pb-8">
-          <% @bookmark_posts.each do |post| %>
-            <%= render 'commons/post', post: post %>
-          <% end %>
-        </div>
-      <% else %>
-        <p class="mt-2">ブックマークしたポストはありません</p>
-      <% end %>
     </div>
+    <% if @bookmark_posts.present? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-6 pb-8">
+        <% @bookmark_posts.each do |post| %>
+          <%= render 'commons/post', post: post %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="mt-2 text-center">ブックマークしたポストはありません</p>
+    <% end %>
   </div>
 </body>
