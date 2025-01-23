@@ -1,17 +1,15 @@
- <div class="bg-teal">
-    <footer class="flex justify-between items-start p-4 mx-8">
-  <div class="flex flex-col space-y-4">
-    <%= link_to image_tag('logo.png', class: 'h-16 hover:opacity-70'), root_path %>
-
-    <div class="flex space-x-4">
+<footer class="footer bg-teal text-primary-content p-10">
+  <!-- 左側コンテンツ -->
+  <aside>
+    <%= link_to image_tag('logo.png', class: 'h-12 md:h-14 lg:h-16 hover:opacity-70'), root_path %>
+    <p class="font-bold">
       <%= link_to 'お問い合わせ', contact_path, class: 'text-brown font-bold hover:opacity-70' %>
+    </p>
+    <p class="font-bold">
       <%= link_to '利用規約', terms_of_service_path, class: 'text-brown font-bold hover:opacity-70' %>
+    </p>
+    <p class="font-bold">
       <%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'text-brown font-bold hover:opacity-70' %>
-    </div>
-  </div>
-
-  <div class="flex space-x-4 items-start">
-    <%= link_to '<i class="fa-brands fa-x-twitter"></i>'.html_safe, 'https://x.com/m_0130k', target: '_blank', rel: 'noopener noreferrer', class: 'text-brown text-3xl font-bold hover:opacity-70' %>
-  </div>
+    </p>
+  </aside>
 </footer>
-</div>

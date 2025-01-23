@@ -1,24 +1,29 @@
 <% content_for(:title, @cafe_name) %>
 <body class="bg-cream">
-  <div class="container mx-auto px-10 py-8 my-8 bg-white rounded-xl min-h-screen">
+  <div class="container mx-auto px-10 py-8 my-8 bg-white rounded-xl min-h-screen max-w-screen-lg">
 
-    <div class="flex justify-between items-center mb-4">
-      <h1 class="text-3xl font-bold text-brown"><%= @post.cafe_name %></h1>
-      <div class="flex items-center">
-        <% if current_user&.mine?(@post) %>
-          <%= link_to edit_post_path(@post) do %>
-            <i class="fa-regular fa-pen-to-square fa-2xl text-brown"></i>
-          <% end %>
-          <%= link_to  post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } do %>
-            <i class="fa-regular fa-trash-can fa-2xl text-brown ml-2"></i>
-          <% end %>
-        <% else %>
-          <%= render 'bookmark_buttons', { post: @post } %>
-        <% end %>
-      </div>
-    </div>
+ <div class="flex justify-between items-center mb-4">
+  <!-- Cafe Name (Left side) -->
+  <h1 class="text-2xl font-bold text-brown w-auto"><%= @post.cafe_name %></h1>
 
-    <%= link_to account_path(@post.user), class: 'flex items-center' do %>
+  <!-- Action Buttons (Right side) -->
+  <div class="flex items-center space-x-4">
+    <% if current_user&.mine?(@post) %>
+      <%= link_to edit_post_path(@post) do %>
+        <i class="fa-regular fa-pen-to-square fa-2xl text-brown"></i>
+      <% end %>
+      <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } do %>
+        <i class="fa-regular fa-trash-can fa-2xl text-brown"></i>
+      <% end %>
+    <% else %>
+      <%= render 'bookmark_buttons', { post: @post } %>
+    <% end %>
+  </div>
+</div>
+
+
+
+    <%= link_to account_path(@post.user), class: 'flex items-center mb-4' do %>
       <div class="flex items-center mb-2">
         <% if @post.user.profile&.avatar&.attached? %>
           <%= image_tag url_for(@post.user.profile.avatar), class: 'w-8 h-8 rounded-full mr-2' %>
@@ -40,58 +45,59 @@
       <p class="text-gray-700"><%= @post.address %></p>
     </div>
 
+    <!-- Google Map Embed -->
+    <script type="text/javascript">
+      function initMap() {
+        var test = {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: test
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
 
+        var contentString = '住所：<%= @post.address %>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
 
-<script type="text/javascript">
-  function initMap() {
-    var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
-    var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15,
-              center: test
-              });
-    var transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
+        var marker = new google.maps.Marker({
+                      position: test,
+                      map: map,
+                      title: contentString
+                     });
 
-    var contentString = '住所：<%= @post.address %>';
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-    var marker = new google.maps.Marker({
-                  position:test,
-                  map: map,
-                  title: contentString
-                 });
-
-     marker.addListener('click', function() {
-       infowindow.open(map, marker);
-     });
-  }
-</script>
-<script async
-              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-</script>
-<style type="text/css">
-  #map { height: 300px;
-         width: 70%;}
-</style>
-<div id="map"></div>
+         marker.addListener('click', function() {
+           infowindow.open(map, marker);
+         });
+      }
+    </script>
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+    </script>
+    <style type="text/css">
+      #map {
+        height: 300px;
+        width: 100%;
+        max-width: 700px;
+      }
+    </style>
+    <div id="map"></div>
 
     <div class="mt-6 flex items-center mb-8">
-  <% @post.tags.each do |tag| %>
-    <div class="text-brown mr-3 hover:opacity-70">
-    <%= link_to tag_path(tag) do %>
-      <i class="fa-solid fa-hashtag"></i>
-      <%=  tag.name %>
-    <% end %>
+      <% @post.tags.each do |tag| %>
+        <div class="text-brown mr-3 hover:opacity-70">
+        <%= link_to tag_path(tag) do %>
+          <i class="fa-solid fa-hashtag"></i>
+          <%= tag.name %>
+        <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
-
 
     <div class="flex items-center mb-8 hover:opacity-70">
       <i class="fa-solid fa-link fa-xl text-brown mr-2"></i>
-     <% cafe_link = @post.cafe_link.to_s.strip %>
+      <% cafe_link = @post.cafe_link.to_s.strip %>
       <% if cafe_link.present? && cafe_link =~ /\Ahttps?:\/\/[^\s]+\z/ %>
         <%= link_to ERB::Util.html_escape(cafe_link), cafe_link, target: "_blank", rel: "noopener noreferrer", class: "link link-neutral" %>
       <% else %>
@@ -118,43 +124,41 @@
     </div>
 
     <div class="bg-cream p-4 rounded-xl">
-  <div class="flex items-center mt-2 mb-4 ml-2">
-  <!-- コメント一覧 -->
-  <div class="flex items-center">
-    <i class="fa-solid fa-comment fa-xl mr-2 text-brown"></i>
-    <h2 class="text-brown text-xl font-bold">コメント一覧</h2>
-  </div>
+      <div class="mt-2 mb-4 ml-2">
+        <div class="flex items-center mb-4">
+          <i class="fa-solid fa-comment fa-xl mr-2 text-brown"></i>
+          <h2 class="text-brown text-xl font-bold">コメント</h2>
+        </div>
 
-  <!-- コメントを追加する -->
-  <%= link_to new_post_comment_path(@post) do %>
-    <div class="flex items-center cursor-pointer hover:opacity-70 ml-10">
-      <i class="fa-solid fa-comment-medical fa-lg mr-2 text-brown"></i>
-      <span class="text-gray-700 font-bold">コメントを追加する</span>
+     <%= link_to new_post_comment_path(@post) do %>
+        <div class="flex items-center cursor-pointer hover:opacity-70">
+          <i class="fa-solid fa-comment-medical fa-lg text-brown"></i>
+          <span class="ml-2 text-gray-700 font-bold">コメントを追加</span>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
 
-<div class="divider"></div>
 
-  <% @comments.each do |comment| %>
-    <div class="flex items-center text-gray-600 bg-white px-6 py-4 mb-4 rounded-xl">
-      <p class="flex-1"><%= comment.content %></p>
-      <span class="text-gray-500 text-sm ml-4 mr-2">
-        <%= comment.user.profile&.nickname || comment.user.display_name %>
-      </span>
-      <% if current_user == comment.user %>
-        <div class="ml-4 flex items-center space-x-2">
-          <%= link_to edit_post_comment_path(@post, comment) do %>
-            <i class="fa-regular fa-pen-to-square fa-lg text-brown"></i>
-          <% end %>
-          <%= button_to post_comment_path(comment.post.id, comment.id), method: :delete do %>
-            <i class="fa-regular fa-trash-can fa-lg text-brown"></i>
+      <div class="divider"></div>
+
+      <% @comments.each do |comment| %>
+        <div class="flex items-center text-gray-600 bg-white px-6 py-4 mb-4 rounded-xl">
+          <p class="flex-1"><%= comment.content %></p>
+          <span class="text-gray-500 text-sm ml-4 mr-2">
+            <%= comment.user.profile&.nickname || comment.user.display_name %>
+          </span>
+          <% if current_user == comment.user %>
+            <div class="ml-4 flex items-center space-x-2">
+              <%= link_to edit_post_comment_path(@post, comment) do %>
+                <i class="fa-regular fa-pen-to-square fa-lg text-brown"></i>
+              <% end %>
+              <%= button_to post_comment_path(comment.post.id, comment.id), method: :delete do %>
+                <i class="fa-regular fa-trash-can fa-lg text-brown"></i>
+              <% end %>
+            </div>
           <% end %>
         </div>
       <% end %>
     </div>
-  <% end %>
-</div>
-
   </div>
 </body>

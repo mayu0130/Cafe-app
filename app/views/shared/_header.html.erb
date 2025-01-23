@@ -1,44 +1,66 @@
 <div class="bg-teal">
   <header class="flex justify-between items-center p-4 mx-8">
-    <div>
-      <%= link_to image_tag('logo.png', class: 'h-16 hover:opacity-70'), root_path %>
+    <!-- ロゴリンク -->
+   <div>
+      <%= link_to image_tag('logo.png', class: 'h-12 md:h-14 lg:h-16 hover:opacity-70'), root_path %>
     </div>
+    <!-- ユーザーの状態に応じたナビゲーション -->
     <div class="flex items-center space-x-4">
       <% if user_signed_in? %>
-        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="マイページ">
-          <%= link_to profile_path do %>
-            <% if current_user.profile&.avatar&.persisted? && current_user.profile.avatar.attached? %>
-              <%= image_tag url_for(current_user.profile.avatar), class: 'w-9 h-9 rounded-full border-2' %>
-            <% else %>
-              <i class="fa-regular fa-circle-user fa-2xl text-brown"></i>
-            <% end %>
-          <% end %>
-        </div>
-         <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="投稿をする">
-          <%= link_to new_post_path do %>
-            <i class="fa-solid fa-circle-plus fa-2xl text-brown"></i>
-          <% end %>
-        </div>
-        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ブックマーク一覧">
-          <%= link_to bookmarks_posts_path do %>
-            <i class="fa-regular fa-bookmark fa-2xl text-brown"></i>
-          <% end %>
-        </div>
-        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="カフェ診断">
-          <%= link_to diagnoses_path do %>
-            <i class="fa-solid fa-book-quran fa-2xl text-brown"></i>
-          <% end %>
-        </div>
-        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ログアウト">
-          <%= button_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete } do %>
-            <i class="fa-solid fa-arrow-right-from-bracket fa-2xl text-brown"></i>
-          <% end %>
+        <div class="navbar text-brown font-bold">
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h7" />
+                </svg>
+              </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow right-0 font-bold">
+                <li><%= link_to 'マイページ', profile_path %></li>
+                <li><%= link_to '投稿する', new_post_path %></li>
+                <li><%= link_to 'ブックマーク一覧', bookmarks_posts_path %></li>
+                <li><%= link_to 'カフェ診断', diagnoses_path %></li>
+                <li><%= button_to 'ログアウト', destroy_user_session_path, method: :delete, data: { turbo_method: :delete } %></li>
+              </ul>
+            </div>
+          </div>
         </div>
       <% else %>
-        <div class="flex items-center space-x-2 tooltip tooltip-bottom hover:opacity-70" data-tip="ログイン">
-          <%= link_to new_user_session_path do %>
-            <i class="fa-solid fa-arrow-right-to-bracket fa-2xl text-brown"></i>
-          <% end %>
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle text-brown">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h7" />
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow right-0 text-brown font-bold">
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <li><%= link_to '新規登録', new_user_registration_path %></li>
+              <li><%= link_to 'リセットパスワード', new_user_password_path %></li>
+            </ul>
+          </div>
         </div>
       <% end %>
     </div>

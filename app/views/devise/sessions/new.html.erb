@@ -1,6 +1,6 @@
 <% content_for(:title, t('.sign_in')) %>
 <div class="flex items-center justify-center min-h-screen bg-cream">
-  <div class="w-full max-w-md p-6 bg-white rounded-lg mt-[-8rem] border border-brown">
+  <div class="w-full max-w-md p-6 bg-white rounded-lg border border-brown">
     <h2 class="text-2xl text-brown font-bold text-center mb-4"><%= t('.sign_in') %></h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4" }) do |f| %>
