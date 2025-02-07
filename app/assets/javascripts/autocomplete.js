@@ -1,6 +1,7 @@
 document.addEventListener("turbo:load", function() {
   const searchInput = document.getElementById("search-input");
   const resultsList = document.getElementById("autocomplete-results");
+  const resultsButton = document.getElementById("results-button"); // ボタンの要素を取得
 
   function fetchResults(query) {
     if (!query.trim()) {
@@ -19,8 +20,10 @@ document.addEventListener("turbo:load", function() {
             const listItem = document.createElement("li");
             listItem.classList.add("p-2", "cursor-pointer");
             listItem.textContent = cafeName;
-            listItem.addEventListener("click", function() {あ
+            listItem.addEventListener("click", function() {
+              // フォームに選択した値をセット
               searchInput.value = cafeName;
+              // オートコンプリートリストを非表示にする
               resultsList.classList.add("hidden");
             });
             resultsList.appendChild(listItem);
@@ -46,6 +49,10 @@ document.addEventListener("turbo:load", function() {
 
     searchInput.addEventListener("change", function() {
       fetchResults(searchInput.value);
+    });
+
+    resultsButton.addEventListener("click", function() {
+      resultsList.classList.add("hidden");
     });
 
     document.addEventListener("click", function(event) {
