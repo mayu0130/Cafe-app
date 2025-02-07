@@ -73,20 +73,22 @@ class PostsController < ApplicationController
   end
 
   def prepare_meta_tags(post)
-        image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(post.cafe_name)}"
-        set_meta_tags og: {
-                        site_name: 'Magco',
-                        title: post.cafe_name,
-                        description: 'ユーザーによるカフェの投稿です',
-                        type: 'website',
-                        url: request.original_url,
-                        image: image_url,
-                        locale: 'ja-JP'
-                      },
-                      twitter: {
-                        card: 'summary_large_image',
-                        site: 'https://x.com/m_0130k',
-                        image: image_url
-                      }
-      end
+  # URLヘルパーを使用して正しいURLを生成
+    image_url = images_ogp_url(text: post.cafe_name, format: :png)
+
+    set_meta_tags og: {
+      site_name: 'Magco',
+      title: post.cafe_name,
+      description: 'ユーザーによるカフェの投稿です',
+      type: 'website',
+      url: request.original_url,
+      image: image_url,  # 完全なURLを使用
+      locale: 'ja-JP'
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: 'https://x.com/m_0130k',
+      image: image_url  # 完全なURLを使用
+    }
+end
 end

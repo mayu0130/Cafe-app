@@ -1,5 +1,4 @@
 class ImagesController < ApplicationController
-  before_action :authenticate_user!
   skip_before_action :require_login, raise: false
 
   def ogp
@@ -11,6 +10,6 @@ class ImagesController < ApplicationController
   private
 
   def ogp_params
-    params.permit(:text)
+    params.permit(:text, :format)
   end
 end
