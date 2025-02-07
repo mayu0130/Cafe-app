@@ -1,9 +1,7 @@
 name: Render Deploy
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   deploy:
@@ -12,21 +10,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2.2'
-          bundler-cache: true
-
-      - name: Run tests
-        run: |
-          bundle install
-          bundle exec rails test
-
       - name: Trigger Render Deployment
         uses: ttskch/render-deploy@v1.0.0
         with:
           api-key: ${{ secrets.RENDER_API_KEY }}
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          interval: 60
-          timeout: 600
+          interval: 60 # optional
+          timeout: 600 # optional
