@@ -114,8 +114,8 @@
     <div class="text-brown">
       <% prepare_meta_tags @post %>
       <% timestamp = Time.now.to_i %>
-      <% post_url = "#{post_url(@post)}?timestamp=#{timestamp}" %>
-      <% twitter_share_url = "https://twitter.com/share?text=#{CGI.escape("Mycafeを投稿したよ！-#{@post.cafe_name}")}&url=#{post_url}" %>
+      <% share_url = post_url(@post, protocol: 'https') %>
+      <% twitter_share_url = "https://twitter.com/share?text=#{CGI.escape("Mycafeを投稿したよ！-#{@post.cafe_name}")}&url=#{share_url}" %>
 
       <%= link_to twitter_share_url, target: '_blank', class: "flex items-center mb-8 hover:opacity-70", title: "Xでシェア" do %>
         <i class="fa-brands fa-x-twitter fa-xl mr-2"></i>
