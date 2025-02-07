@@ -128,7 +128,7 @@ RSpec.describe Post, type: :model do
       expect(Post.ransackable_attributes).to match_array(%w[cafe_name body address])
     end
 
-    it "ransackable_associations がタグ関連付けのみを返す" do
+    it 'ransackable_associations がタグ関連付けのみを返す' do
       expect(Post.ransackable_associations).to eq(%w[tags])
     end
   end
