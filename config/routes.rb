@@ -68,5 +68,6 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'contact', to: redirect('https://forms.gle/z8sibaa5aQfKe9os8')
   # Defines the root path route ("/")
-  # root "posts#index"
+  # root "postsindex"
+  resources :daily_advices, only: [:index, :create, :destroy]
 end

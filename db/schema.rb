@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_18_005133) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_08_025027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,27 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_18_005133) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "daily_advices", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.datetime "generated_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "question"
+    t.index ["user_id", "generated_at"], name: "index_daily_advices_on_user_id_and_generated_at"
+    t.index ["user_id"], name: "index_daily_advices_on_user_id"
+  end
+
+  create_table "daily_usage_counts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "used_date", null: false
+    t.integer "usage_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "used_date"], name: "index_daily_usage_counts_on_user_id_and_used_date", unique: true
+    t.index ["user_id"], name: "index_daily_usage_counts_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -135,6 +156,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_18_005133) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "daily_advices", "users"
+  add_foreign_key "daily_usage_counts", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "relationships", "users", column: "following_id"

@@ -1,0 +1,74 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-2xl font-bold text-brown mb-4">
+      <i class="fas fa-coffee mr-2"></i>
+      Cafe AI
+    </h1>
+
+    <%= form_with url: daily_advices_path, local: true, class: "mb-8" do |f| %>
+      <div class="mb-4">
+        <label class="block text-brown font-bold">
+          カフェについて質問してください
+        </label>
+        <div class="text-sm text-gray-600 mb-2">
+        <% if current_user.can_generate_advice? %>
+          ※1日1回まで生成できます
+        <% else %>
+          ※本日の制限に達しました
+        <% end %>
+      </div>
+        <%= f.text_area :question,
+            class: "w-full px-4 py-2 border border-brown rounded-lg focus:ring-2 focus:ring-brown focus:border-brown",
+            rows: 3,
+            placeholder: "例：初心者向けのコーヒー豆の選び方を教えてください" %>
+      </div>
+
+      <%= f.submit "アドバイスを求める",
+          class: "btn bg-teal text-white" %>
+    <% end %>
+
+      <div class="divider"></div>
+
+    <!-- 過去のアドバイス一覧 -->
+<div class="space-y-6">
+  <h2 class="text-2xl font-bold text-brown mb-4"><i class="fas fa-history mr-2"></i>過去の質問履歴</h2>
+
+  <% if @daily_advices.any? %>
+    <% @daily_advices.each do |advice| %>
+      <div class="bg-white rounded-lg shadow-lg p-6 relative group">
+        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+          <%= button_to daily_advice_path(advice),
+              method: :delete,
+              class: "text-red-500 hover:text-red-700",
+              data: { turbo_confirm: "この質問を削除してもよろしいですか？" } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+
+        <div class="text-gray-600 mb-4">
+          <%= l advice.generated_at, format: :long %>
+        </div>
+
+        <div class="mb-4">
+          <div class="font-medium text-brown mb-2">Q:</div>
+          <p class="text-gray-700 bg-cream rounded-lg p-4">
+            <%= advice.question %>
+          </p>
+        </div>
+
+        <div>
+          <div class="font-medium text-brown mb-2">A:</div>
+          <div class="text-gray-700 leading-relaxed bg-cream rounded-lg p-4">
+            <%= simple_format advice.content %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-gray-600 text-center py-8">
+      まだ質問履歴がありません
+    </p>
+  <% end %>
+</div>
+  </div>
+</div>

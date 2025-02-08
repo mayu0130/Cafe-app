@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships, source: :follower
 
+  has_many :daily_advices, dependent: :destroy
+  has_many :daily_usage_counts, dependent: :destroy
+
   def display_name
     self.email.split('@').first
   end
@@ -69,6 +72,16 @@ class User < ApplicationRecord
              user.password = Devise.friendly_token[0, 20]
            end
     user
+  end
+
+  def can_generate_advice?
+    usage_count = daily_usage_counts.find_or_create_by(used_date: Date.current)
+    usage_count.usage_count < DailyAdvice::DAILY_LIMIT
+  end
+
+  def remaining_daily_attempts
+    usage_count = daily_usage_counts.find_or_create_by(used_date: Date.current)
+    [DailyAdvice::DAILY_LIMIT - usage_count.usage_count, 0].max
   end
 
   private
