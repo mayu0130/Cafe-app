@@ -6,6 +6,13 @@ class DailyAdvicesController < ApplicationController
   end
 
   def create
+
+    if params[:question].blank?
+      flash[:alert] = "質問を入力してください"
+      redirect_to daily_advices_path
+      return
+    end
+
     usage_count = current_user.daily_usage_counts.find_or_create_by(used_date: Date.current)
 
     if usage_count.usage_count >= DailyAdvice::DAILY_LIMIT
