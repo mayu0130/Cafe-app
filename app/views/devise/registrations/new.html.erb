@@ -7,12 +7,18 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-4">
-        <%= f.label :email, class: "block text-gray-700 font-bold" %>
+        <%= f.label :email, class: "block text-gray-700 font-bold" do %>
+          Eメール
+          <span class="text-red-500 ml-1">*</span>
+        <% end %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
       </div>
 
       <div class="mb-4">
-        <%= f.label :password, class: "block text-gray-700 font-bold" %>
+        <%= f.label :password, class: "block text-gray-700 font-bold" do %>
+          パスワード
+          <span class="text-red-500 ml-1">*</span>
+        <% end %>
         <% if @minimum_password_length %>
           <small class="text-sm text-gray-500"><%= t('devise.shared.minimum_password_length', count: 6)  %></small>
         <% end %>
@@ -20,7 +26,10 @@
       </div>
 
       <div class="mb-4">
-        <%= f.label :password_confirmation, class: "block text-gray-700 font-bold" %>
+        <%= f.label :password_confirmation, class: "block text-gray-700 font-bold" do %>
+          パスワード確認
+          <span class="text-red-500 ml-1">*</span>
+        <% end %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
       </div>
 
