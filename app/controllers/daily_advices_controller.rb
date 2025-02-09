@@ -8,7 +8,7 @@ class DailyAdvicesController < ApplicationController
   def create
 
     if params[:question].blank?
-      flash[:alert] = "質問を入力してください"
+      flash[:alert] = '質問を入力してください'
       redirect_to daily_advices_path
       return
     end
