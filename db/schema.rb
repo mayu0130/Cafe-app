@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_08_025027) do
     t.datetime "generated_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "question"
+    t.text "question", null: false
     t.index ["user_id", "generated_at"], name: "index_daily_advices_on_user_id_and_generated_at"
     t.index ["user_id"], name: "index_daily_advices_on_user_id"
   end
