@@ -48,3 +48,6 @@ ja:
       title: "カフェドリンク診断"
     result:
       title: "カフェドリンク診断：結果"
+  pagination:
+    previous: "前へ"
+    next: "次へ"

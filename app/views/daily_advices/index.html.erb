@@ -64,11 +64,14 @@
         </div>
       </div>
     <% end %>
-  <% else %>
-    <p class="text-gray-600 text-center py-8">
-      まだ質問履歴がありません
-    </p>
-  <% end %>
-</div>
+      <% else %>
+        <p class="text-gray-600 text-center py-8">
+          まだ質問履歴がありません
+        </p>
+      <% end %>
+    </div>
+    <div class="mt-10">
+      <%= paginate @daily_advices %>
+    </div>
   </div>
 </div>
