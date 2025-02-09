@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   def show
     @tag = Tag.find(params[:id])  # IDでタグを検索
-    @posts = @tag.posts # タグに関連するポストを取得 (ページネーションを使う場合)
+    @posts = @tag.posts.page(params[:page]).per(8)
   end
 end

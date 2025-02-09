@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = current_user.profile
     @user = current_user
-    @posts = @user.posts.order(created_at: :desc)
+    @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(8)
   end
 
   def edit

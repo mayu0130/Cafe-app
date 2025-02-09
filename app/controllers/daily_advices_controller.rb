@@ -2,22 +2,15 @@ class DailyAdvicesController < ApplicationController
   before_action :authenticate_user!  # Deviseを使用している場合
 
   def index
-    @daily_advices = current_user&.daily_advices&.order(generated_at: :desc) || []
+    @daily_advices = current_user.daily_advices.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def create
-    # 制限チェック
     usage_count = current_user.daily_usage_counts.find_or_create_by(used_date: Date.current)
 
     if usage_count.usage_count >= DailyAdvice::DAILY_LIMIT
       next_time = Time.current.end_of_day + 1.second
       flash[:error] = "1日#{DailyAdvice::DAILY_LIMIT}回までの制限に達しました。#{l(next_time, format: :short)}以降に再度お試しください。"
-      redirect_to daily_advices_path
-      return
-    end
-
-    if ENV['OPENAI_API_KEY'].blank?
-      flash[:error] = 'OpenAI APIの設定が必要です'
       redirect_to daily_advices_path
       return
     end
