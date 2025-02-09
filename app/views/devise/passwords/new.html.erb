@@ -7,7 +7,10 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="mb-4">
-        <%= f.label :email, class: "block text-gray-700 font-bold" %>
+        <%= f.label :email, class: "block text-gray-700 font-bold" do %>
+          Eメール
+          <span class="text-red-500 ml-1">*</span>
+        <% end %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
       </div>
 

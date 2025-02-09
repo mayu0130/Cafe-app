@@ -14,7 +14,10 @@
     <%= form_with(model: @profile, url: profile_path, method: 'put', local: true) do |f| %>
       <!-- ニックネーム -->
       <div class="mb-4">
-        <%= f.label :nickname, 'ニックネーム', class: 'block text-brown font-semibold mb-2' %>
+        <%= f.label :nickname, 'ニックネーム', class: 'block text-brown font-semibold mb-2' do %>
+          ニックネーム
+          <span class="text-red-500 ml-1">*</span>
+        <% end %>
         <%= f.text_field :nickname, class: 'border border-gray-300 rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
       </div>
 
@@ -38,7 +41,10 @@
 
       <!-- 自己紹介 -->
       <div class="mb-4">
-        <%= f.label :introduction, '自己紹介', class: 'block text-brown font-semibold mb-2' %>
+        <%= f.label :introduction, '自己紹介', class: 'block text-brown font-semibold mb-2' do %>
+          自己紹介
+          <span class="text-red-500 ml-1">*</span>
+        <% end %>
         <%= f.text_area :introduction, class: 'border border-gray-300 rounded-lg w-full p-3 h-32 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
       </div>
 
