@@ -2,10 +2,13 @@
 <% content_for(:title, t('.title')) %>
 <body class="bg-cream">
   <div class="container mx-auto">
-    <div class="text-3xl text-brown font-bold mt-8">
+    <div class="text-3xl text-brown font-bold mt-8 mb-4">
       <i class="fa-solid fa-bookmark fa-sm text-brown mr-2"></i>
       ブックマーク一覧
     </div>
+
+    <%= render 'commons/search_form', search_url: bookmarks_posts_path %>
+
     <% if @bookmark_posts.present? %>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pt-6 pb-8">
         <% @bookmark_posts.each do |post| %>

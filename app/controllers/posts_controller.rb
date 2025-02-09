@@ -58,10 +58,10 @@ class PostsController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_posts = current_user.bookmark_posts
-                               .order(created_at: :desc)
-                               .page(params[:page])
-                               .per(8)
+    @q = current_user.bookmark_posts.ransack(params[:q])
+    @bookmark_posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(8)
+    @prefectures = Post::PREFECTURES
+    @tags = Tag.all
   end
 
   def autocomplete
