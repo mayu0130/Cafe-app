@@ -14,7 +14,7 @@
             <%= @profile&.nickname.presence || @user&.display_name || 'ニックネーム：未記入' %>
           </h2>
           <p class="text-gray-600 text-lg">
-            <%= @profile&.mbti || 'MBTI:未記入' %> | <%= @profile&.address || '居住地：未記入' %>
+            <%= @profile&.address || '居住地：未記入' %> <%= @profile&.mbti || 'MBTI:未記入' %>
           </p>
         </div>
       </div>
@@ -42,8 +42,8 @@
 
       <!-- Follow Links -->
       <div class="flex justify-center space-x-4 mt-6">
-        <%= link_to "フォロー一覧", following_user_path(user), class: 'btn border-brown text-brown py-2 px-4 rounded-lg shadow-sm hover:bg-brown hover:text-white' %>
-        <%= link_to "フォロワー一覧", followers_user_path(user), class: 'btn border-brown text-brown py-2 px-4 rounded-lg shadow-sm hover:bg-brown hover:text-white' %>
+        <%= link_to "フォロー　#{user.followings.count}", following_user_path(user), class: 'btn border-brown text-brown py-2 px-4 rounded-lg shadow-sm hover:bg-brown hover:text-white' %>
+        <%= link_to "フォロワー　#{user.followers.count}", followers_user_path(user), class: 'btn border-brown text-brown py-2 px-4 rounded-lg shadow-sm hover:bg-brown hover:text-white' %>
       </div>
 
       <!-- Edit / Follow Buttons -->
@@ -76,4 +76,3 @@
       <% end %>
     </div>
   </div>
-
