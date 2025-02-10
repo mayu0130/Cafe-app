@@ -1,19 +1,19 @@
 <% content_for(:title, @cafe_name) %>
 <body class="bg-cream">
-  <div class="container mx-auto px-10 py-8 my-8 bg-white rounded-xl min-h-screen max-w-screen-lg">
+  <div class="container mx-auto md:px-10 py-8 my-8 md:bg-white rounded-xl min-h-screen max-w-screen-lg">
 
  <div class="flex justify-between items-center mb-4">
   <!-- Cafe Name (Left side) -->
-  <h1 class="text-2xl font-bold text-brown w-auto"><%= @post.cafe_name %></h1>
+  <h1 class="text-xl md:text-2xl font-bold text-brown w-auto"><%= @post.cafe_name %></h1>
 
   <!-- Action Buttons (Right side) -->
   <div class="flex items-center space-x-4">
     <% if current_user&.mine?(@post) %>
       <%= link_to edit_post_path(@post) do %>
-        <i class="fa-regular fa-pen-to-square fa-2xl text-brown"></i>
+        <i class="fa-regular fa-pen-to-square fa-xl md:fa-2xl text-brown"></i>
       <% end %>
       <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } do %>
-        <i class="fa-regular fa-trash-can fa-2xl text-brown"></i>
+        <i class="fa-regular fa-trash-can fa-xl md:fa-2xl text-brown"></i>
       <% end %>
     <% else %>
       <%= render 'bookmark_buttons', { post: @post } %>
@@ -23,26 +23,26 @@
 
 
 
-    <%= link_to account_path(@post.user), class: 'flex items-center mb-4' do %>
+    <%= link_to account_path(@post.user), class: 'flex items-center' do %>
       <div class="flex items-center mb-2">
         <% if @post.user.profile&.avatar&.attached? %>
           <%= image_tag url_for(@post.user.profile.avatar), class: 'w-8 h-8 rounded-full mr-2' %>
         <% else %>
           <i class="fa-regular fa-circle-user fa-xl text-brown mr-2"></i>
         <% end %>
-        <p class="text-gray-700 font-bold hover:opacity-70"><%= @post.user.profile&.nickname || @post.user.display_name %></p>
+        <p class="text-gray-700 font-bold hover:opacity-70 text-sm md:text-base"><%= @post.user.profile&.nickname || @post.user.display_name %></p>
       </div>
     <% end %>
-    <p class="text-gray-500 mb-4"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+    <p class="text-gray-500 mb-4 text-sm md:text-base"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
 
-    <p class="text-gray-700 text-xl mb-8"><%= @post.body %></p>
+    <p class="text-gray-700 md:text-xl mb-8"><%= @post.body %></p>
     <% if @post.image.attached? %>
       <%= image_tag @post.image, class: 'w-full max-w-md h-auto mb-8' %>
     <% end %>
 
     <div class="flex items-center mb-4">
       <i class="fa-solid fa-location-dot fa-xl mr-2 text-brown"></i>
-      <p class="text-gray-700"><%= @post.address %></p>
+      <p class="text-gray-700 text-sm md:text-base"><%= @post.address %></p>
     </div>
 
     <!-- Google Map Embed -->
@@ -84,12 +84,12 @@
     </style>
     <div id="map"></div>
 
-    <div class="mt-6 flex items-center mb-8">
+    <div class="mt-6 mb-8">
       <% @post.tags.each do |tag| %>
         <div class="text-brown mr-3 hover:opacity-70">
         <%= link_to tag_path(tag) do %>
           <i class="fa-solid fa-hashtag"></i>
-          <%= tag.name %>
+          <span class="text-sm md:text-base"><%= tag.name %></span>
         <% end %>
         </div>
       <% end %>
@@ -99,9 +99,9 @@
       <i class="fa-solid fa-link fa-xl text-brown mr-2"></i>
       <% cafe_link = @post.cafe_link.to_s.strip %>
       <% if cafe_link.present? && cafe_link =~ /\Ahttps?:\/\/[^\s]+\z/ %>
-        <%= link_to ERB::Util.html_escape(cafe_link), cafe_link, target: "_blank", rel: "noopener noreferrer", class: "link link-neutral" %>
+        <%= link_to ERB::Util.html_escape(cafe_link), cafe_link, target: "_blank", rel: "noopener noreferrer", class: "link link-neutral text-sm md:text-md truncate overflow-hidden text-ellipsis" %>
       <% else %>
-        <span class="text-gray-500">リンクは無効です</span>
+        <span class="text-gray-500 text-sm md:text-md">リンクは無効です</span>
       <% end %>
     </div>
 
@@ -120,21 +120,21 @@
 
       <%= link_to twitter_share_url, target: '_blank', class: "flex items-center mb-8 hover:opacity-70", title: "Xでシェア" do %>
         <i class="fa-brands fa-x-twitter fa-xl mr-2"></i>
-        <span class="text-gray-700 font-bold">Xに共有する</span>
+        <span class="text-gray-700 font-bold text-sm md:text-base">Xに共有する</span>
       <% end %>
     </div>
 
-    <div class="bg-cream p-4 rounded-xl">
-      <div class="mt-2 mb-4 ml-2">
-        <div class="flex items-center mb-4">
+    <div class="bg-white md:bg-cream p-4 rounded-xl">
+      <div class="mt-2 mb-4 ml-2 flex items-center ">
+        <div class="flex items-center">
           <i class="fa-solid fa-comment fa-xl mr-2 text-brown"></i>
-          <h2 class="text-brown text-xl font-bold">コメント</h2>
+          <h2 class="text-brown text-lg md:text-xl font-bold">コメント</h2>
         </div>
 
      <%= link_to new_post_comment_path(@post) do %>
-        <div class="flex items-center cursor-pointer hover:opacity-70">
+        <div class="flex items-center cursor-pointer hover:opacity-70 ml-6">
           <i class="fa-solid fa-comment-medical fa-lg text-brown"></i>
-          <span class="ml-2 text-gray-700 font-bold">コメントを追加</span>
+          <span class="ml-2 text-sm md:text-base text-gray-700 font-bold">コメントを追加</span>
         </div>
       <% end %>
     </div>
@@ -143,18 +143,18 @@
       <div class="divider"></div>
 
       <% @comments.each do |comment| %>
-        <div class="flex items-center text-gray-600 bg-white px-6 py-4 mb-4 rounded-xl">
-          <p class="flex-1"><%= comment.content %></p>
-          <span class="text-gray-500 text-sm ml-4 mr-2">
-            <%= comment.user.profile&.nickname || comment.user.display_name %>
+        <div class="md:flex md:items-center text-gray-600 bg-cream md:bg-white px-6 py-4 mb-4 rounded-xl">
+          <p class="flex-1 text-sm md:text-base"><%= comment.content %></p>
+          <span class="text-gray-500 text-xs md:text-sm md:ml-4 mr-2">
+            <%= link_to comment.user.profile&.nickname || comment.user.display_name, account_path(comment.user), class: 'text-brown hover:underline' %>
           </span>
           <% if current_user == comment.user %>
-            <div class="ml-4 flex items-center space-x-2">
+            <div class="md:ml-4 flex items-center space-x-2">
               <%= link_to edit_post_comment_path(@post, comment) do %>
-                <i class="fa-regular fa-pen-to-square fa-lg text-brown"></i>
+                <i class="fa-regular fa-pen-to-square md:fa-lg text-brown"></i>
               <% end %>
               <%= button_to post_comment_path(comment.post.id, comment.id), method: :delete do %>
-                <i class="fa-regular fa-trash-can fa-lg text-brown"></i>
+                <i class="fa-regular fa-trash-can md:fa-lg text-brown"></i>
               <% end %>
             </div>
           <% end %>

@@ -2,7 +2,7 @@
 <div class="bg-cream">
   <div class="container mx-auto pt-10">
 
-  <h1 class="text-2xl font-bold mb-3"><i class="text-brown fa-solid fa-hashtag"></i><span class="text-brown"><%= @tag.name %></span> <span class="text-gray-700 text-xl">に関連する投稿</span></h1>
+  <h1 class="text-xl md:text-2xl font-bold mb-3"><i class="text-brown fa-solid fa-hashtag"></i><span class="text-brown"><%= @tag.name %></span> <span class="text-gray-700 text-base md:text-xl">に関連する投稿</span></h1>
 
    <%= render 'commons/search_form_tags', search_url: tag_path(@tag) %>
 

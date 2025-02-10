@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="bg-cream">
   <div class="container mx-auto pt-10 h-screen">
-    <h1 class="text-2xl font-bold text-brown mb-6 text-center">
+    <h1 class="text-lg md:text-2xl font-bold text-brown mb-6 text-center">
       <%= @user.profile&.nickname || @user.display_name %> のフォロワー
     </h1>
     <ul class="space-y-4 max-w-md mx-auto">
@@ -13,7 +13,7 @@
             <% else %>
               <i class="fa-regular fa-circle-user fa-xl text-brown mr-2"></i>
             <% end %>
-            <p class="text-gray-700 font-bold">
+            <p class="text-gray-700 font-bold text-sm md:text-base">
               <%= link_to (user.profile&.nickname || user.display_name), account_path(user), class: 'text-gray-700 hover:text-gray-400 font-medium text-lg' %>
             </p>
           </li>

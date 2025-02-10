@@ -1,5 +1,5 @@
 
-  <div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto md:px-4 py-8">
     <!-- Profile Section -->
     <div class="bg-white border border-brown rounded-2xl shadow-md p-6 sm:p-12 text-center max-w-2xl mx-auto">
       <!-- Profile Information -->
@@ -10,10 +10,10 @@
           <i class="fa-regular fa-circle-user fa-3x text-brown"></i>
         <% end %>
         <div class="text-center sm:text-left mt-4 sm:mt-0">
-          <h2 class="text-2xl sm:text-3xl font-semibold text-brown">
+          <h2 class="text-xl md:text-2xl sm:text-3xl font-semibold text-brown">
             <%= @profile&.nickname.presence || @user&.display_name || 'ニックネーム：未記入' %>
           </h2>
-          <p class="text-gray-600 text-lg">
+          <p class="text-gray-600 md:text-lg">
             <%= @profile&.address || '居住地：未記入' %> <%= @profile&.mbti || 'MBTI:未記入' %>
           </p>
         </div>
@@ -21,7 +21,7 @@
 
       <!-- Profile Details -->
       <div class="mt-6">
-        <p class="text-gray-600 text-lg">
+        <p class="text-gray-600 text-sm md:text-base">
           <%= @profile&.introduction || '自己紹介：未記入' %>
         </p>
       </div>
@@ -41,7 +41,7 @@
       </div>
 
       <!-- Follow Links -->
-      <div class="flex justify-center space-x-4 mt-6">
+      <div class="flex justify-center space-x-4 mt-6 ext-sm md:text-base">
         <%= link_to "フォロー　#{user.followings.count}", following_user_path(user), class: 'btn border-brown text-brown py-2 px-4 rounded-lg shadow-sm hover:bg-brown hover:text-white' %>
         <%= link_to "フォロワー　#{user.followers.count}", followers_user_path(user), class: 'btn border-brown text-brown py-2 px-4 rounded-lg shadow-sm hover:bg-brown hover:text-white' %>
       </div>

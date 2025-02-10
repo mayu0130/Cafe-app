@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <body class="bg-cream">
-  <div class="container mx-auto mt-8 mb-12 px-6 lg:px-32 py-6">
-    <h1 class="text-center text-brown text-3xl font-bold mb-8">
+  <div class="container mt-8 mb-12 lg:px-32 py-6">
+    <h1 class="text-center text-brown text-xl md:text-3xl font-bold mb-8">
       <i class="fa-solid fa-book-quran fa-lg mr-2 text-brown"></i>
       カフェ診断
     </h1>
@@ -11,7 +11,7 @@
     <div class="mt-8 flex justify-center w-full animate-fade-in-4">
       <%= link_to daily_advices_path, class: "chat chat-start w-3/4 max-w-3xl transform transition-transform duration-200 hover:scale-105" do %>
         <div class="chat-bubble bg-teal text-brown font-bold hover:bg-teal-600 transition-colors text-xl py-4 px-8 w-full text-center flex justify-center items-center">
-          <i class="fas fa-robot mr-3 text-3xl"></i>AIに質問する
+          <i class="fas fa-robot mr-3 md:text-2xl"></i><span class="text-base md:text-2xl">AIに質問する</span>
         </div>
       <% end %>
     </div>
@@ -19,7 +19,7 @@
     <div class="mt-8 flex justify-center w-full animate-fade-in-1">
       <%= link_to new_coffee_bean_path, class: "chat chat-end w-3/4 max-w-3xl transform transition-transform duration-200 hover:scale-105" do %>
         <div class="chat-bubble bg-white text-brown font-bold hover:bg-teal-600 transition-colors text-xl py-4 px-8 w-full text-center flex justify-center items-center">
-          <i class="fas fa-tablets mr-3 text-3xl"></i>コーヒー豆診断
+          <i class="fas fa-tablets mr-3 md:text-2xl"></i><span class="text-base md:text-2xl">コーヒー豆診断</span>
         </div>
       <% end %>
     </div>
@@ -28,7 +28,7 @@
     <div class="mt-8 flex justify-center w-full animate-fade-in-2">
       <%= link_to new_drink_path, class: "chat chat-end w-3/4 max-w-3xl transform transition-transform duration-200 hover:scale-105" do %>
         <div class="chat-bubble bg-white text-brown font-bold hover:bg-teal-600 transition-colors text-xl py-4 px-8 w-full text-center flex justify-center items-center">
-          <i class="fas fa-mug-hot mr-3 text-3xl"></i>カフェドリンク診断
+          <i class="fas fa-mug-hot mr-3 md:text-2xl"></i><span class="text-base md:text-2xl">カフェドリンク診断</span>
         </div>
       <% end %>
     </div>
@@ -37,7 +37,7 @@
     <div class="mt-8 flex justify-center w-full animate-fade-in-3">
       <%= link_to new_dessert_path, class: "chat chat-end w-3/4 max-w-3xl transform transition-transform duration-200 hover:scale-105" do %>
         <div class="chat-bubble bg-white text-brown font-bold hover:bg-teal-600 transition-colors text-xl py-4 px-8 w-full text-center flex justify-center items-center">
-          <i class="fas fa-cake-candles mr-3 text-3xl"></i>カフェデザート診断
+          <i class="fas fa-cake-candles mr-3 md:text-2xl"></i><span class="text-base md:text-2xl">カフェデザート診断</span>
         </div>
       <% end %>
     </div>
