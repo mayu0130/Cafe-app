@@ -39,26 +39,26 @@
         <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
           <%= button_to daily_advice_path(advice),
               method: :delete,
-              class: "text-red-500 hover:text-red-700",
+              class: "text-brown hover:text-red-700",
               data: { turbo_confirm: "この質問を削除してもよろしいですか？" } do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>
         </div>
 
-        <div class="text-gray-600 mb-4">
+        <div class="text-gray-600 font-bold mb-4">
           <%= l advice.generated_at, format: :long %>
         </div>
 
         <div class="mb-4">
-          <div class="font-medium text-brown mb-2">Q:</div>
-          <p class="text-gray-700 bg-cream rounded-lg p-4">
+          <div class="text-brown mb-2">Q:</div>
+          <p class="text-sm md:text-base text-gray-700 bg-cream rounded-lg p-4">
             <%= advice.question %>
           </p>
         </div>
 
         <div>
-          <div class="font-medium text-brown mb-2">A:</div>
-          <div class="text-gray-700 leading-relaxed bg-cream rounded-lg p-4">
+          <div class="text-brown mb-2">A:</div>
+          <div class="text-sm md:text-base text-gray-700 leading-relaxed bg-cream rounded-lg p-6">
             <%= simple_format advice.content %>
           </div>
         </div>

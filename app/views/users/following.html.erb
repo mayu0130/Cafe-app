@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="bg-cream">
   <div class="container mx-auto pt-10 h-screen">
-    <h1 class="text-2xl font-bold mb-6 text-center text-brown">
+    <h1 class="text-lg md:text-2xl font-bold mb-6 text-center text-brown">
       <%= @user.profile&.nickname || @user.display_name %> がフォローしているユーザー
     </h1>
     <% if @following_users.any? %>

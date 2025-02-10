@@ -2,7 +2,7 @@
 <% content_for(:title, t('.title')) %>
 <body class="bg-cream">
   <div class="container mx-auto">
-    <div class="text-3xl text-brown font-bold mt-8 mb-4">
+    <div class="text-xl md:text-3xl text-brown font-bold mt-8 mb-4">
       <i class="fa-solid fa-bookmark fa-sm text-brown mr-2"></i>
       ブックマーク一覧
     </div>
@@ -16,7 +16,7 @@
         <% end %>
       </div>
     <% else %>
-      <p class="mt-2 text-left">ブックマークしたポストはありません</p>
+      <p class="mt-6 text-left">ブックマークしたポストはありません</p>
     <% end %>
     <%= paginate @bookmark_posts %>
   </div>
