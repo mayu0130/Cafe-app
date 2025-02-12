@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        cafe: ["M PLUS Rounded 1c", "serif"],
+        logo: ["Playfair Display", "serif"]
+      },
       colors: {
         teal: '#7CD1D0',
         brown: '#7B5544',
