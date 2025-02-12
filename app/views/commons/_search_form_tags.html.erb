@@ -1,10 +1,17 @@
 <%= search_form_for @q, url: search_url, method: :get, class: 'flex flex-col sm:flex-row gap-2 items-start sm:items-center' do |f| %>
 
   <!-- 検索ボックス -->
+  <div class="relative w-full">
   <%= f.search_field :cafe_name_cont, id: "search-input",
-    class: "w-full sm:flex-1 px-4 py-2 border border-brown rounded-lg text-brown placeholder:text-brown focus:outline-none focus:ring-2 focus:ring-brown",
-    placeholder: "カフェ名を入力",
-    autocomplete: "off" %>
+      class: "w-full sm:flex-1 px-4 py-2 border border-brown rounded-lg text-brown placeholder:text-brown focus:outline-none focus:ring-2 focus:ring-brown",
+      placeholder: "カフェ名を入力",
+      autocomplete: "off" %>
+
+  <ul id="autocomplete-results" class="absolute top-full left-0 max-h-60 bg-cream text-brown shadow-lg rounded border w-full z-0 overflow-auto">
+  </ul>
+</div>
+
+    <script src="/assets/autocomplete.js"></script>
 
   <!-- フィルター用の選択肢 -->
   <div class="flex w-full sm:w-auto gap-2">
@@ -21,7 +28,3 @@
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 <% end %>
-
-    <ul id="autocomplete-results" class="absolute mt-1 max-h-60 bg-cream text-brown shadow-lg rounded border w-full hidden">
-    </ul>
-    <script src="/assets/autocomplete.js"></script>

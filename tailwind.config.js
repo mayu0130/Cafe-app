@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        cafe: ['Raleway', 'sans-serif'],
+      },
       colors: {
         teal: '#7CD1D0',
         brown: '#7B5544',
