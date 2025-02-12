@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        cafe: ["Playfair Display", "serif"]
+        cafe: ['Raleway', 'sans-serif'],
       },
       colors: {
         teal: '#7CD1D0',
