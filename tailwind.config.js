@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         cafe: ['Raleway', 'sans-serif'],
+        genty: ['Genty', 'sans-serif'],
       },
       colors: {
         teal: '#7CD1D0',
