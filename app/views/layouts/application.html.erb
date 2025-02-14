@@ -32,11 +32,13 @@
   </head>
 
   <div class="font-cafe">
-    <%= render 'shared/header'%>
-    <%= render 'shared/flash' %>
-      <div class="bg-cream mx-6">
-        <%= yield %>
+      <%= render 'shared/header' %>
+      <%= render 'shared/flash' %>
+      <div class="bg-cream">
+        <div class="content-wrapper px-4 md:px-0">
+          <%= yield %>
+        </div>
       </div>
-    <%= render 'shared/footer' %>
+      <%= render 'shared/footer' %>
   </div>
 </html>
