@@ -26,20 +26,17 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap", rel: "stylesheet", media: "all" %>
 
-
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <script src="https://kit.fontawesome.com/d01e4a84b1.js" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
   </head>
 
-    <div class="font-cafe">
-      <%= render 'shared/header'%>
-      <%= render 'shared/flash' %>
-        <div class="bg-cream">
-          <div class="mx-8">
-            <%= yield %>
-          </div>
+  <div class="font-cafe">
+    <%= render 'shared/header'%>
+    <%= render 'shared/flash' %>
+      <div class="bg-cream">
+        <%= yield %>
       </div>
-      <%= render 'shared/footer' %>
-    </div>
+    <%= render 'shared/footer' %>
+  </div>
 </html>
