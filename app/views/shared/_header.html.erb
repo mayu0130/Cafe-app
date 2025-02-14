@@ -1,10 +1,8 @@
 <div class="bg-teal">
   <header class="flex justify-between items-center p-4 md:mx-8 z-50 relative">
-    <!-- ロゴリンク -->
     <div>
-      <%= link_to image_tag('logo.png', class: 'h-12 md:h-14 lg:h-16 hover:opacity-70'), root_path %>
+      <%= link_to image_tag('logo.png', class: 'h-12 md:h-14 lg:h-16 hover:opacity-70'), current_user ? posts_path : root_path %>
     </div>
-    <!-- ユーザーの状態に応じたナビゲーション -->
     <div class="flex items-center space-x-4">
       <% if user_signed_in? %>
         <div class="navbar text-brown font-bold z-50 relative">
@@ -66,4 +64,3 @@
     </div>
   </header>
 </div>
-

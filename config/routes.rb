@@ -24,7 +24,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'posts#index'
+  root to: 'top#index'
+  get 'top', to: 'top#index'
+
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
       collection do
