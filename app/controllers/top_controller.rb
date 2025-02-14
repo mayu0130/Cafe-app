@@ -1,5 +1,5 @@
 class TopController < ApplicationController
   def index
-    # トップページ用のロジックをここに記述します
+    @posts = Post.order(created_at: :desc).limit(10)
   end
 end
