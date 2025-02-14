@@ -1,6 +1,7 @@
 <% content_for(:title, t('.sign_up')) %>
-<div class="flex items-center justify-center min-h-screen bg-cream">
-  <div class="w-full max-w-md p-6 bg-white rounded-lg border border-brown">
+<div class="relative min-h-screen w-screen flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('/assets/hero.jpg');">
+  <div class="absolute inset-0 bg-black opacity-60"></div>
+  <div class="w-full max-w-md p-6 bg-white rounded-lg border border-brown relative z-10">
     <h2 class="text-2xl text-brown font-bold text-center mb-2"><%= t('.sign_up') %></h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4" }) do |f| %>
