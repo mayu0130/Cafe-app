@@ -15,7 +15,7 @@
   </div>
   <%= link_to '投稿一覧へ', posts_path, class: "btn bg-white text-center text-brown rounded-md mb-2" %>
  <div class="flex justify-center items-center mt-10">
-  <div class="carousel carousel-center rounded- max-w-lg md:max-w-4xl p-6">
+  <div class="carousel carousel-center rounded- max-w-sm md:max-w-4xl p-6">
     <% if @posts.present? %>
       <% @posts.each do |post| %>
         <div class="carousel-item snap-center shrink-0 w-80">
