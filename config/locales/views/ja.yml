@@ -48,6 +48,9 @@ ja:
       title: "カフェドリンク診断"
     result:
       title: "カフェドリンク診断：結果"
+  daily_advices:
+    index:
+      title: "AIカフェ診断"
   pagination:
     previous: "前へ"
     next: "次へ"
