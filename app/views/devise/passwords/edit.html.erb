@@ -1,38 +1,41 @@
 <% content_for(:title, t('.title')) %>
-<div class="flex items-center justify-center min-h-screen bg-cream">
-  <div class="w-full max-w-md p-8 bg-white rounded-lg border border-brown">
-    <h2 class="text-2xl text-brown font-bold text-center mb-4"><%= t('.title')%></h2>
+<div class="relative min-h-screen bg-cover bg-center" style="background-image: url('/assets/hero.jpg');">
+  <div class="absolute inset-0 bg-black opacity-60"></div>
+  <div class="flex items-center justify-center min-h-screen relative">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg border border-brown z-10">
+      <h2 class="text-lg md:text-2xl text-brown font-bold text-center mb-4"><%= t('.title')%></h2>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-4" }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <%= f.hidden_field :reset_password_token %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "space-y-4" }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
 
-      <div class="mb-4">
-        <%= f.label :password, t('.new_password'), class: "block text-gray-700 font-bold" do %>
-          新しいパスワード
-          <span class="text-red-500 ml-1">*</span>
-        <% end %>
-        <% if @minimum_password_length %>
-          <small class="text-sm text-gray-500"><%= t('devise.shared.minimum_password_length', count: 6)  %></small>
-        <% end %>
-        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
+        <div class="mb-4">
+          <%= f.label :password, t('.new_password'), class: "block text-gray-700 font-bold" do %>
+            新しいパスワード
+            <span class="text-red-500 ml-1">*</span>
+          <% end %>
+          <% if @minimum_password_length %>
+            <small class="text-sm text-gray-500"><%= t('devise.shared.minimum_password_length', count: 6)  %></small>
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
+        </div>
+
+        <div class="mb-4">
+          <%= f.label :password_confirmation, t('.confirm_new_password'), class: "block text-gray-700 font-bold" do %>
+            新しいパスワード確認
+            <span class="text-red-500 ml-1">*</span>
+          <% end %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
+        </div>
+
+        <div class="actions flex justify-center">
+          <%= f.submit t('.change_my_password'), class: "btn bg-teal text-white w-full text-lg" %>
+        </div>
+      <% end %>
+
+      <div class="flex flex-col items-center justify-center mt-4">
+        <%= render "devise/shared/links", class: "text-center text-sm" %>
       </div>
-
-      <div class="mb-4">
-        <%= f.label :password_confirmation, t('.confirm_new_password'), class: "block text-gray-700 font-bold" do %>
-          新しいパスワード確認
-          <span class="text-red-500 ml-1">*</span>
-        <% end %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 block w-full px-3 py-2 bg-cream border border-gray-300 rounded-md shadow-sm focus:outline-none sm:text-sm" %>
-      </div>
-
-      <div class="actions flex justify-center">
-        <%= f.submit t('.change_my_password'), class: "btn bg-teal text-white w-full text-lg" %>
-      </div>
-    <% end %>
-
-    <div class="flex flex-col items-center justify-center mt-4">
-      <%= render "devise/shared/links", class: "text-center text-sm" %>
     </div>
   </div>
 </div>
