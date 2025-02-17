@@ -1,6 +1,7 @@
 # app/controllers/coffee_beans_controller.rb
 
 class CoffeeBeansController < ApplicationController
+  before_action :authenticate_user!
   def new
     @questions = [
       { id: 1, question: 'コーヒーを飲むタイミングは？', options: ['朝一番', '昼食後', '夕方', '夜'] },

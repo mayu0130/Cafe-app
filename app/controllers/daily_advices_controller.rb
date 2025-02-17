@@ -1,5 +1,5 @@
 class DailyAdvicesController < ApplicationController
-  before_action :authenticate_user!  # Deviseを使用している場合
+  before_action :authenticate_user!
 
   def index
     @daily_advices = current_user.daily_advices.order(created_at: :desc).page(params[:page]).per(5)

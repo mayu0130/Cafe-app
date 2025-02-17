@@ -1,4 +1,5 @@
 class DessertsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @questions = [
       { id: 1, question: '今日の気分に一番近いのは？', options: ['さっぱり', '甘いもの', '温かいもの', '特別なデザート'] },
