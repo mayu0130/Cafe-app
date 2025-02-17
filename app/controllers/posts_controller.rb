@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destroy]
   helper_method :prepare_meta_tags
 
   def index
