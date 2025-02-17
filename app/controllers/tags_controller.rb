@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @tag = Tag.find(params[:id])
     @q = @tag.posts.ransack(params[:q])

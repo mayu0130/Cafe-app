@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
+
   def following
     @user = User.find(params[:id])
     @following_users = @user.followings.includes(:profile)

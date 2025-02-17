@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @questions = [
       { id: 1, question: '朝起きた時の気分は？', options: ['すっきり目覚めたい！', 'ゆっくり始めたい気分', 'パワフルに活動したい', 'リラックスして一日を始めたい'] },
