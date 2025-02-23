@@ -66,7 +66,7 @@ class PostsController < ApplicationController
 
   def autocomplete
     if params[:query].present?
-      @posts = Post.where('cafe_name LIKE ?', "%#{params[:query]}%").limit(10)
+      @posts = Post.where('cafe_name ILIKE ?', "%#{params[:query]}%")
       render json: @posts.map(&:cafe_name)
     else
       render json: []
