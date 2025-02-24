@@ -1,0 +1,12 @@
+ <div class="text-brown">
+  <% prepare_meta_tags @post %>
+  <% timestamp = Time.now.to_i %>
+  <% share_url = post_url(@post, protocol: 'https') %>
+  <% nickname = @post.user.profile&.nickname || @post.user.display_name %>
+  <% twitter_share_url = "https://twitter.com/share?text=#{CGI.escape("#{nickname}さんが#{@post.cafe_name}を投稿したよ！- #magco")}&url=#{share_url}" %>
+
+  <%= link_to twitter_share_url, target: '_blank', class: "flex items-center mb-8 hover:opacity-70", title: "Xでシェア" do %>
+    <i class="fa-brands fa-x-twitter fa-xl mr-2"></i>
+    <span class="text-gray-700 font-bold text-sm md:text-base">Xに共有する</span>
+  <% end %>
+</div>
