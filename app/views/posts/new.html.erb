@@ -1,13 +1,10 @@
 <% content_for(:title, t('.title')) %>
 <body class="bg-cream h-screen">
   <div class="container mx-auto mt-8 mb-12 px-6 md:px-32 py-6">
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li class="bg-teal mb-6 rounded-lg p-4 text-brown"><%= message %></li>
-      <% end %>
-    </ul>
 
     <%= form_with(model: @post, url: posts_path, method: 'post', local: true) do |f| %>
+
+     <%= render 'shared/error_messages', object: f.object %>
 
       <div class="mb-4">
         <%= f.label :cafe_name, 'カフェ名', class: 'block text-brown font-semibold mb-2' do %>
