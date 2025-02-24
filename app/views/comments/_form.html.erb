@@ -1,0 +1,13 @@
+<div>
+  <%= f.label :content, 'コメント本文', class: 'block text-brown font-semibold mb-2' do %>
+    コメント本文
+    <span class="text-red-500 ml-1">*</span>
+  <% end %>
+</div>
+<div>
+  <%= f.text_area :content, class: 'border border-gray-200 rounded-lg w-full p-2 h-56 resize-none' %>
+</div>
+<%= f.hidden_field :post_id, value: @comment.post.id %>
+<div class="flex justify-center mt-8">
+  <%= f.submit '投稿する', class: 'bg-teal text-white font-bold py-2 px-12 rounded-lg hover:bg-opacity-70 max-w-xs w-full sm:w-auto' %>
+</div>
