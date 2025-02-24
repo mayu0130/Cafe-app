@@ -1,0 +1,15 @@
+<% @questions.each do |question| %>
+  <div class="mb-8">
+    <h3 class="text-brown font-bold mb-2 text-center lg:text-left"><%= question[:question] %></h3>
+    <% question[:options].each_with_index do |option, index| %>
+      <div class="flex items-center space-x-2 justify-center lg:justify-start">
+        <%= radio_button_tag "answers[#{question[:id]}]", option, false, id: "question_#{question[:id]}_option_#{index}", class: 'radio radio-primary radio-xs' %>
+        <%= label_tag "question_#{question[:id]}_option_#{index}", option %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="flex justify-center lg:justify-start">
+  <%= f.submit "診断結果を表示", class: "btn bg-teal text-white px-6 py-2" %>
+</div>
