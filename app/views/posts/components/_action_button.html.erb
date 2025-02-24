@@ -1,0 +1,12 @@
+<div class="flex items-center space-x-4">
+  <% if current_user&.mine?(@post) %>
+    <%= link_to edit_post_path(@post) do %>
+      <i class="fa-regular fa-pen-to-square fa-xl md:fa-2xl text-brown"></i>
+    <% end %>
+    <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } do %>
+      <i class="fa-regular fa-trash-can fa-xl md:fa-2xl text-brown"></i>
+    <% end %>
+  <% else %>
+    <%= render 'bookmark_buttons', { post: @post } %>
+  <% end %>
+</div>
