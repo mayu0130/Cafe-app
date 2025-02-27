@@ -105,6 +105,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_08_025027) do
     t.bigint "user_id", null: false
     t.string "nickname", null: false
     t.string "mbti"
+    t.date "birthday"
     t.string "address"
     t.text "introduction", null: false
     t.string "x_link"

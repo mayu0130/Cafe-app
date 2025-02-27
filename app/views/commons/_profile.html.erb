@@ -13,7 +13,7 @@
             <%= @profile&.nickname.presence || @user&.display_name || 'ニックネーム：未記入' %>
           </h2>
           <p class="text-gray-600 md:text-lg">
-            <%= @profile&.address || '居住地：未記入' %> <%= @profile&.mbti || 'MBTI:未記入' %>
+            <%= @profile&.address || '' %> <%= @profile&.mbti || '' %> <%= @profile&.birthday || ' ' %>
           </p>
         </div>
       </div>
@@ -21,7 +21,7 @@
       <!-- Profile Details -->
       <div class="mt-6">
         <p class="text-gray-600 text-sm md:text-base">
-          <%= @profile&.introduction || '自己紹介：未記入' %>
+          <%= @profile&.introduction || '' %>
         </p>
       </div>
 
