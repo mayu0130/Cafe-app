@@ -4,6 +4,7 @@ class CreateProfiles < ActiveRecord::Migration[7.2]
       t.references :user, null: false, foreign_key: true
       t.string :nickname, null: false
       t.string :mbti
+      t.date :birthday
       t.string :address
       t.text :introduction, null: false
       t.string :x_link
