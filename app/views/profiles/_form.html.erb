@@ -21,17 +21,33 @@
   <%= f.file_field :avatar, accept: "image/*", class: 'file-input file-input-bordered w-full' %>
 </div>
 
-<div class="mb-4">
-  <%= f.label :birthday, '誕生日', class: 'block text-brown font-semibold mb-2' do %>
-    誕生日
-  <% end %>
-  <%= f.date_select :birthday, { discard_year: true, include_blank: true }, class: 'mt-2 border border-gray-300 rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
-</div>
+ <div class="mb-4">
+  <%= f.label :birthday, '誕生日', class: 'block text-brown font-semibold mb-2' %>
+  <div class="flex space-x-2">
+    <%= select_tag 'profile[birthday(2i)]',
+          options_for_select([['月を選択', '']] + (1..12).map { |m| ["#{m}月", m] }, f.object.birthday&.month),
+          class: "border border-gray-300 rounded-lg p-4" %>
+
+    <%= select_tag 'profile[birthday(3i)]',
+          options_for_select([['日を選択', '']] + (1..31).map { |d| ["#{d}日", d] }, f.object.birthday&.day),
+          class: "border border-gray-300 rounded-lg p-2" %>
+
+    <%= hidden_field_tag 'profile[birthday(1i)]', Date.today.year %>
+  </div>
+  </div>
 
  <div class="mb-4">
   <%= f.label :mbti, 'MBTI', class: 'block text-brown font-semibold mb-2' %>
-  <%= f.text_field :mbti, class: 'border border-gray-300 rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
+  <%= f.select :mbti, options_for_select(
+      ['INTJ', 'INFP', 'INFJ', 'ISTJ', 'ISFJ', 'ISTP', 'ISFP', 'INTP',
+       'ENFP', 'ENFJ', 'ENTP', 'ESTJ', 'ESFJ', 'ESTP', 'ESFP', 'ENTJ'], f.object.mbti),
+      { include_blank: '選択してください' },
+      class: 'border border-gray-300 rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
 </div>
+
+
+
+
 <div class="mb-4">
   <%= f.label :address, '居住地', class: 'block text-brown font-semibold mb-2' %>
   <%= f.text_field :address, class: 'border border-gray-300 rounded-lg w-full p-3 focus:outline-none focus:ring-2 focus:ring-teal-300' %>
