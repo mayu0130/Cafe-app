@@ -1,4 +1,5 @@
 <div class="flex items-center space-x-4">
+  <%= render "favorites/btn", post: @post %>
   <% if current_user&.mine?(@post) %>
     <%= link_to edit_post_path(@post) do %>
       <i class="fa-regular fa-pen-to-square fa-xl md:fa-2xl text-brown"></i>

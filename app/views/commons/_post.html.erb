@@ -14,7 +14,6 @@
           <%= post.cafe_name %>
         </h2>
     <% end %>
-
         <div class="mt-2 flex items-center">
           <%= link_to account_path(post.user), class: 'flex items-center' do %>
             <div class="flex items-center">
@@ -30,9 +29,15 @@
           <% end %>
         </div>
 
+       <div class="flex items-center justify-between">
         <p class="text-sm md:text-base text-gray-500 mt-1">
           <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
         </p>
+
+        <div class="flex items-center space-x-2">
+          <%= render "favorites/btn", post: post %>
+        </div>
+      </div>
       </div>
     </div>
 </div>

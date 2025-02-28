@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :daily_advices, dependent: :destroy
   has_many :daily_usage_counts, dependent: :destroy
 
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_posts, through: :favorites, source: :post
+
   def display_name
     self.email.split('@').first
   end
