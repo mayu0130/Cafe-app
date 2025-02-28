@@ -1,37 +1,46 @@
-<div class="relative min-h-[750px] flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('/assets/hero.jpg');">
-  <div class="absolute inset-0 bg-black opacity-60"></div>
-    <div class="relative text-center z-10">
-      <h1 class="font-genty text-3xl md:text-5xl text-white drop-shadow-lg">
-        Magco
-      </h1>
-      <p class="mt-4 md:text-lg text-white drop-shadow-md">
-        あなたの理想のカフェが、きっと見つかる。
-      </p>
-    </div>
-  <div class="relative z-10 space-y-3 flex flex-col items-center mt-4">
-  <div class="flex gap-4">
-    <%= link_to 'ログイン', new_user_session_path, class: "btn bg-white text-brown rounded-md" %>
-    <%= link_to '新規登録', new_user_registration_path, class: "btn bg-white text-brown rounded-md" %>
-  </div>
-  <%= link_to '投稿一覧へ', posts_path, class: "btn bg-white text-center text-brown rounded-md mb-2" %>
- <div class="flex justify-center items-center mt-10">
-  <div class="carousel carousel-center rounded- max-w-sm md:max-w-4xl p-6">
-    <% if @posts.present? %>
-      <% @posts.each do |post| %>
-        <div class="carousel-item snap-center shrink-0 w-80">
-          <% if post.image.present? %>
-            <%= image_tag post.image, class: 'h-48 w-full object-cover rounded-md ml-2' %>
-          <% else %>
-            <%= image_tag 'eyecatch.png', class: 'h-48 w-full object-cover rounded-md ml-2' %>
-          <% end %>
-        </div>
-      <% end %>
+ <div class="relative min-h-[750px] flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('/assets/hero.jpg');">
+    <div class="absolute inset-0 bg-black opacity-60"></div>
+      <div class="relative text-center z-10">
+        <h1 class="font-genty text-3xl md:text-5xl text-white drop-shadow-lg">
+          Magco
+        </h1>
+        <p class="mt-4 md:text-lg text-white drop-shadow-md">
+          あなたの理想のカフェが、きっと見つかる。
+        </p>
+      </div>
+    <div class="relative z-10 space-y-3 flex flex-col items-center mt-4">
+    <% if user_signed_in? %>
+      <div class="flex gap-4">
+        <%= link_to '投稿一覧へ', posts_path, class: "btn bg-white text-brown rounded-md" %>
+        <%= link_to '投稿を作成する', new_post_path, class: "btn bg-white text-brown rounded-md" %>
+      </div>
+      <div class="flex gap-4">
+        <%= link_to 'マイページ', profile_path, class: "btn bg-white text-brown rounded-md" %>
+        <%= link_to 'アドバイス・診断機能を試してみる', diagnoses_path, class: "btn bg-white text-brown rounded-md" %>
+      </div>
     <% else %>
-      <p class="text-center w-full">投稿がありません</p>
-    <% end %>
+      <div class="flex gap-4">
+        <%= link_to 'ログイン', new_user_session_path, class: "btn bg-white text-brown rounded-md" %>
+        <%= link_to '新規登録', new_user_registration_path, class: "btn bg-white text-brown rounded-md" %>
+      </div>
+      <%= link_to '投稿一覧へ', posts_path, class: "btn bg-white text-center text-brown rounded-md mb-2" %>
+
+      <% end %>
+  <div class="flex justify-center items-center mt-10">
+    <div class="carousel carousel-center rounded- max-w-sm md:max-w-4xl p-6">
+      <% if @posts.present? %>
+        <% @posts.each do |post| %>
+          <div class="carousel-item snap-center shrink-0 w-80">
+            <% if post.image.present? %>
+              <%= image_tag post.image, class: 'h-48 w-full object-cover rounded-md ml-2' %>
+            <% else %>
+              <%= image_tag 'eyecatch.png', class: 'h-48 w-full object-cover rounded-md ml-2' %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-center w-full">投稿がありません</p>
+      <% end %>
+    </div>
   </div>
-</div>
-
-
-
 </div>
