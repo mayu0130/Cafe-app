@@ -9,7 +9,6 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = current_user.prepare_profile
-    @mbti_options = User::MBTI_OPTIONS
   end
 
   def update
