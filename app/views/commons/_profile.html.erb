@@ -13,7 +13,7 @@
             <%= @profile&.nickname.presence || @user&.display_name || 'ニックネーム：未記入' %>
           </h2>
           <p class="text-gray-600 md:text-lg">
-            <%= @profile&.address || '' %> <%= @profile&.mbti || '' %> <%= @profile.birthday.present? ? @profile.birthday.strftime("%m/%d") : '' %>
+            <%= @profile&.address || '' %> <%= @profile&.mbti || '' %> <%= @profile&.birthday.present? ? @profile.birthday.strftime("%m/%d") : '' %>
           </p>
         </div>
       </div>
