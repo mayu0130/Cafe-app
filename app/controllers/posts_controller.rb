@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   helper_method :prepare_meta_tags
 
   def index
@@ -80,7 +80,9 @@ class PostsController < ApplicationController
 
   def prepare_meta_tags(post)
   # URLヘルパーを使用して正しいURLを生成
-    image_url = images_ogp_url(text: post.cafe_name, format: :png)
+    image_url = images_ogp_url(text: post.cafe_name)
+
+    Rails.logger.debug "OGP Image URL: #{image_url}"
 
     set_meta_tags og: {
       site_name: 'Magco',
@@ -97,4 +99,5 @@ class PostsController < ApplicationController
       image: image_url  # 完全なURLを使用
     }
 end
+
 end
