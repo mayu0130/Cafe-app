@@ -4,7 +4,7 @@ class OgpCreator
   GRAVITY = 'center'
   TEXT_POSITION = '0,0'
   FONT = './app/assets/fonts/NotoSansJP-VariableFont_wght.ttf'
-  FONT_SIZE = 100
+  FONT_SIZE = 60
   INDENTION_COUNT = 16
   ROW_LIMIT = 10
 
