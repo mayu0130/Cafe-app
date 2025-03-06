@@ -55,8 +55,8 @@ RSpec.describe Post, type: :model do
         expect(post).to be_invalid
       end
 
-      it '51文字の場合は無効であること' do
-        post.address = 'A' * 51
+      it '101文字の場合は無効であること' do
+        post.address = 'A' * 101
         expect(post).to be_invalid
       end
     end

@@ -17,7 +17,7 @@
     コメント
     <span class="text-red-500 ml-1">*</span>
   <% end %>
-  <%= f.text_area :body, placeholder:'10文字以上', class: 'border border-gray-200 rounded-lg w-full p-2 h-32' %>
+  <%= f.text_area :body, class: 'border border-gray-200 rounded-lg w-full p-2 h-32' %>
 </div>
 
 <div class="divider"></div>
@@ -28,7 +28,7 @@
 </div>
 
 <div class="mb-4">
-  <%= f.label :cafe_link, 'URL', class: 'block text-brown font-semibold mb-2' %>
+  <%= f.label :cafe_link, 'カフェのURL', class: 'block text-brown font-semibold mb-2' %>
   <%= f.text_field :cafe_link, class: 'border border-gray-200 rounded-lg w-full p-2' %>
 </div>
 
