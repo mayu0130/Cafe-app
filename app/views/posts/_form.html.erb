@@ -1,30 +1,30 @@
 <div class="mb-4">
-  <%= f.label :cafe_name, 'カフェ名', class: 'block text-brown font-semibold mb-2' do %>
-    カフェ名
-    <span class="text-red-500 ml-1">*</span>
-  <% end %>
-  <%= f.text_field :cafe_name, class: 'border border-gray-200 rounded-lg w-full p-2' %>
+   <%= f.label :cafe_name, class: 'block text-brown font-semibold mb-2' do %>
+      カフェ名 <span class="text-red-500 ml-1">*</span>
+    <% end %>
+    <%= f.text_field :cafe_name, id: 'cafe_name', class: 'border border-gray-200 rounded-lg w-full p-2', autocomplete: 'off' %>
 </div>
 
 <div class="mb-4">
-  <%= f.label :body, '内容', class: 'block text-brown font-semibold mb-2' do %>
-    内容
+<%= f.label :address, class: 'block text-brown font-semibold mb-2' do %>
+  住所 <span class="text-red-500 ml-1">*</span>
+<% end %>
+<%= f.text_field :address, id: 'address', class: 'border border-gray-200 rounded-lg w-full p-2' %>
+</div>
+
+<div class="mb-4">
+  <%= f.label :body, 'コメント', class: 'block text-brown font-semibold mb-2' do %>
+    コメント
     <span class="text-red-500 ml-1">*</span>
   <% end %>
-  <%= f.text_area :body, class: 'border border-gray-200 rounded-lg w-full p-2 h-32' %>
+  <%= f.text_area :body, placeholder:'10文字以上', class: 'border border-gray-200 rounded-lg w-full p-2 h-32' %>
 </div>
+
+<div class="divider"></div>
 
 <div class="mb-4">
   <%= f.label :image, 'アップロード画像', class: 'block text-brown bg-cream font-semibold mb-2' %>
   <%= f.file_field :image, accept: "image/*", class: 'file-input file-input-bordered w-full' %>
-</div>
-
-<div class="mb-4">
-  <%= f.label :address, '住所', class: 'block text-brown font-semibold mb-2' do %>
-    住所
-    <span class="text-red-500 ml-1">*</span>
-  <% end %>
-  <%= f.text_field :address, class: 'border border-gray-200 rounded-lg w-full p-2' %>
 </div>
 
 <div class="mb-4">
@@ -47,3 +47,25 @@
 <div class="flex justify-center">
   <%= f.submit '投稿する', class: 'mt-4 btn w-40 bg-teal text-white' %>
 </div>
+
+<script>
+  function initAutocomplete() {
+    var input = document.getElementById('cafe_name');
+    var autocomplete = new google.maps.places.Autocomplete(input, { types: ['establishment'] });
+
+
+    input.setAttribute('placeholder', 'カフェを入力すると住所が自動入力されます');
+
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        return;
+      }
+
+      document.getElementById('cafe_name').value = place.name || '';
+      document.getElementById('address').value = place.formatted_address || '';
+    });
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initAutocomplete"></script>
