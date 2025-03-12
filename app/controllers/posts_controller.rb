@@ -24,8 +24,15 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
+    @post = current_user.posts.build(post_params)
+
+    if params[:post][:images].present?
+      processed_images = params[:post][:images].map do |image|
+        resize_image(image, 800, 800) # 画像をリサイズ
+      end
+      @post.images.attach(processed_images) # リサイズした画像を保存
+    end
+
     if @post.save
       redirect_to post_path(@post), notice: '投稿しました'
     else
@@ -98,6 +105,15 @@ class PostsController < ApplicationController
       site: 'https://x.com/m_0130k',
       image: image_url  # 完全なURLを使用
     }
+end
+
+def resize_image(image, width, height)
+  processed = ImageProcessing::MiniMagick
+                .source(image.tempfile)
+                .resize_to_fit(width, height)
+                .call
+
+  { io: File.open(processed.path), filename: image.original_filename, content_type: image.content_type }
 end
 
 end
