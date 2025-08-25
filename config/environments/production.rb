@@ -109,7 +109,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts << 'www.cafe-magco.com'
-  config.hosts << 'magco.onrender.com'
+  config.hosts << 'magco-cafe.onrender.com'
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
   #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
